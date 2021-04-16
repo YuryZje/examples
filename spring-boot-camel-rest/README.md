@@ -1,0 +1,1 @@
+Пример реализации rest сервиса на apache camel и spring boot.

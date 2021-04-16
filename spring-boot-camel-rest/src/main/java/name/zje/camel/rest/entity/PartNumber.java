@@ -1,0 +1,36 @@
+package name.zje.camel.rest.entity;
+
+public class PartNumber {
+
+    private Integer id;
+    private String name;
+
+    public PartNumber(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "PartNumber{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
+    }
+}
