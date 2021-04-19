@@ -45,3 +45,5 @@ gradlew
 **/build/
 **/target/
 
+
+.mvn/
