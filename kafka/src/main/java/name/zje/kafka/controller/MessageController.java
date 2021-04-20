@@ -1,4 +1,4 @@
-package zje.name.kafka.controller;
+package name.zje.kafka.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -7,7 +7,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zje.name.kafka.dto.PartNumberDto;
+import name.zje.kafka.dto.PartNumberDto;
 
 @RestController
 @RequestMapping("message")

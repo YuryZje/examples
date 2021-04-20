@@ -1,4 +1,4 @@
-package zje.name.kafka;
+package name.zje.kafka;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

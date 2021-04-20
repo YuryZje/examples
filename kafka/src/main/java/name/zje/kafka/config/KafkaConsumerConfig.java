@@ -1,4 +1,4 @@
-package zje.name.kafka.config;
+package name.zje.kafka.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
@@ -10,7 +10,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import zje.name.kafka.dto.PartNumberDto;
+import name.zje.kafka.dto.PartNumberDto;
 
 import java.util.HashMap;
 import java.util.Map;

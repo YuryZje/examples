@@ -1,4 +1,4 @@
-package zje.name.kafka.dto;
+package name.zje.kafka.dto;
 
 public class PartNumberDto {
 

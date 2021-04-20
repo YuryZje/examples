@@ -1,10 +1,10 @@
-package zje.name.kafka;
+package name.zje.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.KafkaListener;
-import zje.name.kafka.dto.PartNumberDto;
+import name.zje.kafka.dto.PartNumberDto;
 
 @SpringBootApplication
 public class KafkaApplication {
