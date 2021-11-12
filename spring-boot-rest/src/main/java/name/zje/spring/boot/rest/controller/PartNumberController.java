@@ -37,8 +37,8 @@ public class PartNumberController {
         final List<PartNumber> partNumbers = partNumberService.readAll();
 
         return partNumbers != null && !partNumbers.isEmpty()
-                ? new ResponseEntity<>(partNumbers, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            ? new ResponseEntity<>(partNumbers, HttpStatus.OK)
+            : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping(value = "/partnumbers/{id}")

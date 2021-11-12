@@ -8,7 +8,7 @@ camel:
         context-path: /parts/*
 
 logging:
-   config:
-      classpath: logback.xml
-   level: debug
+  config:
+    classpath: logback.xml
+  level: debug
 

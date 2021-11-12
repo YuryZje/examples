@@ -81,7 +81,7 @@ class PartNumberControllerTest {
     @Test
     void whenPartNumbers_thenDeleteOk() {
         HttpEntity<PartNumber> request = new HttpEntity<>(new PartNumber(Integer.MIN_VALUE, "QF345AF"));
-        ResponseEntity <?> responseCreate = restTemplate.exchange(CONTEXT + "/partnumbers", HttpMethod.POST, request,
+        ResponseEntity<?> responseCreate = restTemplate.exchange(CONTEXT + "/partnumbers", HttpMethod.POST, request,
             new ParameterizedTypeReference<>() {
             });
         assertThat(responseCreate.getStatusCode(), is(HttpStatus.CREATED));
@@ -94,7 +94,7 @@ class PartNumberControllerTest {
         assertThat(partNumbers.isEmpty(), is(false));
         Map<String, Integer> params = new HashMap<>();
         params.put("id", partNumbers.get(0).getId());
-        ResponseEntity <?> responseDelete = restTemplate.exchange(CONTEXT + "/partnumbers/{id}", HttpMethod.DELETE, null,
+        ResponseEntity<?> responseDelete = restTemplate.exchange(CONTEXT + "/partnumbers/{id}", HttpMethod.DELETE, null,
             new ParameterizedTypeReference<>() {
             }, params);
         assertThat(responseDelete.getStatusCode(), is(HttpStatus.OK));
@@ -107,7 +107,7 @@ class PartNumberControllerTest {
             new ParameterizedTypeReference<>() {
             });
         assertThat(responseCreate.getStatusCode(), is(HttpStatus.CREATED));
-        ResponseEntity<List<PartNumber>>response = restTemplate.exchange(CONTEXT + "/partnumbers", HttpMethod.GET, null,
+        ResponseEntity<List<PartNumber>> response = restTemplate.exchange(CONTEXT + "/partnumbers", HttpMethod.GET, null,
             new ParameterizedTypeReference<>() {
             });
         assertThat(response.getStatusCode(), is(HttpStatus.OK));

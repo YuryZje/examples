@@ -1,0 +1,3582 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="http://emias.gov.ru/medempregisterservicetypes/1" xmlns:ns1="http://emias.gov.ru/types/1" xmlns:ns2="http://emias.gov.ru/servicetypes/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://emias.gov.ru/medempregisterservicetypes/1">
+
+    <!--Комплексные типы-->
+
+    <xs:import namespace="http://emias.gov.ru/types/1" schemaLocation="emias.gov.ru.emploee.xsd"/>
+
+    <xs:import namespace="http://emias.gov.ru/servicetypes/1" schemaLocation="emias.gov.ru.servicetypes.xsd"/>
+
+    <xs:element name="fault" type="ns2:errorType">
+
+        <xs:annotation>
+
+            <xs:documentation>Структура ошибки</xs:documentation>
+
+        </xs:annotation>
+
+    </xs:element>
+
+    <!--Запрос информации об МР-->
+
+    <xs:element name="getEmployeeInfoRequest2">
+
+        <xs:annotation>
+
+            <xs:documentation>Запрос подробной информации о МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="HealthOrgID" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МО</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="EmployeeID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="JobID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>ИД исполнения должности</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="JobIsActive" type="xs:boolean">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeeInfoRequest">
+
+        <xs:annotation>
+
+            <xs:documentation>Запрос подробной информации о МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="HealthOrgID" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МО</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="EmployeeID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="JobID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>ИД исполнения должности</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="JobIsActive" type="xs:boolean">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeeInfoResponse">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос подробной информации о МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="employeeID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="Info" type="ns1:medicalEmployeeInfo">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Общая информация + контактные данные</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Registration">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Регистрация МР</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element name="Location" type="ns1:KLADRLocationType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Адрес КЛАДР</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="RegDate" type="xs:date">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Дата регисрации</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element name="RegType" type="xs:byte">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Тип регистрации</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Job">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Места работы МР</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element name="ID" type="ns1:emiasIdType"/>
+
+                            <xs:element minOccurs="0" name="JobEntry" type="medicalEmployeeJob"/>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Education" type="medicalEmployeeEducation">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Образование МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Certification" type="newCertification">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Образование МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeeInfoResponse2">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос подробной информации о МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="employeeID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="Info" type="ns1:medicalEmployeeInfo">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Общая информация + контактные данные</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Registration">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Регистрация МР</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element name="Location" type="ns1:KLADRLocationType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Адрес КЛАДР</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="RegDate" type="xs:date">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Дата регисрации</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element name="RegType" type="xs:byte">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Тип регистрации</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Job">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Места работы МР</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element name="ID" type="ns1:emiasIdType"/>
+
+                            <xs:element minOccurs="0" name="JobEntry" type="medicalEmployeeJob2"/>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Education" type="medicalEmployeeEducation">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Образование МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Certification" type="newCertification">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Образование МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <!--Поиск МР-->
+
+    <xs:element name="getEmployeeListRequest">
+
+        <xs:annotation>
+
+            <xs:documentation>Запрос списка МР с возможностью поиска</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageIndex" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Номер страницы результатов</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="SearchQuery">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element minOccurs="0" name="healthOrgID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор МУ</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="healthOrgDepID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор подразделения МУ</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="SNILS" type="ns1:SNILSType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>СНИЛС (Поиск по вхождению)</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="lastName">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Фамилия (поиск по вхождению)</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="100"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="employeeGender" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Пол</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="workPositionKindID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Вид должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="workPositionTypeID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Тип занятия должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="specialityID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Специальность</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="StartDateIn" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Дата начала промежутка приема на работу</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="StartDateOut" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Дата окончания промежутка приема на работу</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="AssistanceTypeID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Вид оказания помощи</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="AssistanceConditionID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Условия оказания медицинской помощи</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="MRID" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор медицинского работника</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="TAPCode">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Код медицинского работника для ТАП</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="10"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="preferentialCode">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Код медицинского работника для льготных рецептов</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="10"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="JobID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>ИД исполнения должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="JobIsActive" type="xs:boolean">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeeListRequest2">
+
+        <xs:annotation>
+
+            <xs:documentation>Запрос списка МР с возможностью поиска</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageIndex" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Номер страницы результатов</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="SearchQuery">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element minOccurs="0" name="healthOrgID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор МУ</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="healthOrgDepID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор подразделения МУ</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="SNILS" type="ns1:SNILSType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>СНИЛС (Поиск по вхождению)</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="lastName">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Фамилия (поиск по вхождению)</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="100"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="employeeGender" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Пол</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="workPositionKindID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Вид должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="workPositionTypeID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Тип занятия должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="specialityID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Специальность</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="StartDateIn" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Дата начала промежутка приема на работу</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="StartDateOut" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Дата окончания промежутка приема на работу</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="AssistanceTypeID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Вид оказания помощи</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="AssistanceConditionID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Условия оказания медицинской помощи</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="MRID" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор медицинского работника</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="TAPCode">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Код медицинского работника для ТАП</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="10"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="preferentialCode">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Код медицинского работника для льготных рецептов</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="10"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="JobID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>ИД исполнения должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="JobIsActive" type="xs:boolean">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeeListResponse">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос списка МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="Page" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Индекс выдаваемой страницы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageCount" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Количестстраниц в выборке</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="EmployeeList" type="ns1:medicalEmployeeList">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Список записей выборки</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeeListResponse2">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос списка МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="Page" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Индекс выдаваемой страницы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageCount" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Количестстраниц в выборке</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="EmployeeList" type="ns1:medicalEmployeeList2">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Список записей выборки</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeeShortListRequest">
+
+        <xs:annotation>
+
+            <xs:documentation>Поиск сокращенной информации по МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageIndex" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Номер страницы результатов</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="SearchQuery">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element minOccurs="0" name="healthOrgID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор МУ</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="healthOrgDepID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор подразделения МУ</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="JobID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>ИД исполнения должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="JobIsActive" type="xs:boolean">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="lastName">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Фамилия (поиск по вхождению)</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="100"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="SNILS" type="ns1:SNILSType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>СНИЛС (Поиск по вхождению)</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeeShortListResponse">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос списка МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="Page" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Индекс выдаваемой страницы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageCount" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Количестстраниц в выборке</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="EmployeeList" type="ns1:getEmployeeShortList">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Список записей выборки</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <!--Поиск МР для АРМ-->
+
+    <xs:element name="getARMEmployeeListRequest">
+
+        <xs:annotation>
+
+            <xs:documentation>Запрос списка МР для АРМ с возможностью поиска</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageIndex" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Номер страницы результатов</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="SearchQuery">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element minOccurs="0" name="healthOrgID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор МУ</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="EmployeeID" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор медицинского работника</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="lastName">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Фамилия (поиск по вхождению)</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="100"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="workPositionKindID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Вид должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="isActive" type="xs:boolean">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getARMEmployeeListRequest2">
+
+        <xs:annotation>
+
+            <xs:documentation>Запрос списка МР для АРМ с возможностью поиска</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageIndex" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Номер страницы результатов</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="SearchQuery">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element minOccurs="0" name="healthOrgID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор МУ</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="EmployeeID" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор медицинского работника</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="lastName">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Фамилия (поиск по вхождению)</xs:documentation>
+
+                                </xs:annotation>
+
+                                <xs:simpleType>
+
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:maxLength value="100"/>
+
+                                    </xs:restriction>
+
+                                </xs:simpleType>
+
+                            </xs:element>
+
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="workPositionKindID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Вид должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                            <xs:element minOccurs="0" name="isActive" type="xs:boolean">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getARMEmployeeListResponse">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос списка МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="Page" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Индекс выдаваемой страницы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageCount" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Количестстраниц в выборке</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="EmployeeList" type="ns1:armEmployeeList">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Список записей выборки</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getARMEmployeeListResponse2">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос списка МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="Page" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Индекс выдаваемой страницы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="PageCount" type="xs:int">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Количестстраниц в выборке</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="EmployeeList" type="ns1:armEmployeeList2">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Список записей выборки</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <!--Запрос фотографии МР-->
+
+    <xs:element name="getEmployeePhotoRequest">
+
+        <xs:annotation>
+
+            <xs:documentation>Запрос фотографии МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="EmployeeID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeePhotoResponse">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос фотографии МР</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="EmployeeID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Photo" type="ns1:attachment">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Фотографии</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <!--Пакетная выгрузка по формату СПУ-->
+
+    <xs:element name="getEmployeePacketInfoRequest">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="HealthOrgID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="EmployeeList">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element maxOccurs="200" name="EmployeeID" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор медицинского работника</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="JobList">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="JobID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>ИД исполнения должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="JobIsActive" type="xs:boolean">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeePacketInfoRequest2">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="HealthOrgID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Идентификатор МР</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="EmployeeList">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element maxOccurs="200" name="EmployeeID" type="xs:string">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>Идентификатор медицинского работника</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="JobList">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Поисковый запрос</xs:documentation>
+
+                    </xs:annotation>
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="JobID" type="ns1:emiasIdType">
+
+                                <xs:annotation>
+
+                                    <xs:documentation>ИД исполнения должности</xs:documentation>
+
+                                </xs:annotation>
+
+                            </xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="JobIsActive" type="xs:boolean">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Выводить только действующие на текущий момент места работы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeePacketInfoResponse2">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element maxOccurs="200" minOccurs="0" name="EmployeeList" type="medicalEmployeePacketInfo2">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Список записей выборки</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getEmployeePacketInfoResponse">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element maxOccurs="200" minOccurs="0" name="EmployeeList" type="medicalEmployeePacketInfo">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Список записей выборки</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getMedicalEmployeePermitRequest">
+
+        <xs:annotation>
+
+            <xs:documentation>Запрос полной истории разрешений врача </xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="RequesterSystemCode" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код запрашивающей системы</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element name="EmployeeID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код врача</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="TypeOrderID" type="xs:string">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Тип распоряжения</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="DateFr" type="xs:date">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Начало запрашиваемого периода </xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element minOccurs="0" name="DateTo" type="xs:date">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Окончание запрашиваемого периода</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:element name="getMedicalEmployeePermitResponse">
+
+        <xs:annotation>
+
+            <xs:documentation>Ответ на запрос полной истории разрешений врача </xs:documentation>
+
+        </xs:annotation>
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="EmployeeID" type="ns1:emiasIdType">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Код врача (ЛЛО)</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+                <xs:element maxOccurs="200" minOccurs="0" name="EmployeeSpecPermit" type="medicalEmployeeSpecPermit">
+
+                    <xs:annotation>
+
+                        <xs:documentation>Список записей выборки</xs:documentation>
+
+                    </xs:annotation>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+    <xs:complexType name="medicalEmployeeJob">
+
+        <xs:annotation>
+
+            <xs:documentation>Место работы медработника</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:sequence>
+
+            <xs:element name="healthOrg" type="ns1:organizationSimpleType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Медицинское учреждение</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="healthOrgDep" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Подразделение медицинского учреждения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="assistanceType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид оказания помощи</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="assistanceCondition" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Условия оказания медицинской помощи</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="workPosition" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Должность</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="workPositionKind" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="workPositionType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Тип занятия должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="speciality" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Специальность МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="specialityCertificate">
+
+                <xs:annotation>
+
+                    <xs:documentation>Сертификат по специальности</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:complexType>
+
+                    <xs:sequence>
+
+                        <xs:element name="nsiTypeCode" type="ns1:nsiCodeType">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Код типа сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="nsiTypeName" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Наименование типа сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element name="nsiSpecialityCode" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Код специальности по сертификату</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="nsiSpecialityName" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Наименование специальности по сертификату</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element name="dateStart" nillable="true" type="xs:date">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Дата выдачи сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="dateEnd" type="xs:date">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Дата завершения действия сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="certSeries" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Серия сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="certNumber" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Номер сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                    </xs:sequence>
+
+                </xs:complexType>
+
+            </xs:element>
+
+            <xs:element name="startDate" nillable="true" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата приема на работу</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="endDate" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата увольнения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="TAPCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код медицинского работника для ТАП</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="preferentialCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код медицинского работника для льготных рецептов</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="workerCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Табельный номер</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="rate" type="xs:float">
+
+                <xs:annotation>
+
+                    <xs:documentation>Занимаемая ставка по данной должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="medicalEmployeeJob2">
+
+        <xs:annotation>
+
+            <xs:documentation>Место работы медработника</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:sequence>
+
+            <xs:element name="healthOrg" type="ns1:organizationSimpleType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Медицинское учреждение</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="healthOrgDep" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Подразделение медицинского учреждения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="assistanceType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид оказания помощи</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="assistanceCondition" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Условия оказания медицинской помощи</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="workPosition" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Должность</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="workPositionKind" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="workPositionType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Тип занятия должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="specialization" type="ns1:specializationType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Специализация МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="speciality" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Специальность МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="specialityCertificate">
+
+                <xs:annotation>
+
+                    <xs:documentation>Сертификат по специальности</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:complexType>
+
+                    <xs:sequence>
+
+                        <xs:element name="nsiTypeCode" type="ns1:nsiCodeType">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Код типа сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="nsiTypeName" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Наименование типа сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element name="nsiSpecialityCode" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Код специальности по сертификату</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="nsiSpecialityName" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Наименование специальности по сертификату</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element name="dateStart" nillable="true" type="xs:date">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Дата выдачи сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="dateEnd" type="xs:date">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Дата завершения действия сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="certSeries" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Серия сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="certNumber" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Номер сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                    </xs:sequence>
+
+                </xs:complexType>
+
+            </xs:element>
+
+            <xs:element name="startDate" nillable="true" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата приема на работу</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="endDate" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата увольнения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="TAPCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код медицинского работника для ТАП</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="preferentialCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код медицинского работника для льготных рецептов</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="workerCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Табельный номер</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="rate" type="xs:float">
+
+                <xs:annotation>
+
+                    <xs:documentation>Занимаемая ставка по данной должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="medicalEmployeeJobPacket">
+
+        <xs:annotation>
+
+            <xs:documentation>Место работы медработника</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:sequence>
+
+            <xs:element name="healthOrg" type="ns1:organizationSimpleTypePacket">
+
+                <xs:annotation>
+
+                    <xs:documentation>Медицинское учреждение</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="healthOrgDep" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Подразделение медицинского учреждения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="assistanceType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид оказания помощи</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="assistanceCondition" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Условия оказания медицинской помощи</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="workPosition" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Должность</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="workPositionKind" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="workPositionType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Тип занятия должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="speciality" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Специальность МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="specialityCertificate">
+
+                <xs:annotation>
+
+                    <xs:documentation>Сертификат по специальности</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:complexType>
+
+                    <xs:sequence>
+
+                        <xs:element name="nsiTypeCode" type="ns1:nsiCodeType">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Код типа сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="nsiTypeName" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Наименование типа сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element name="nsiSpecialityCode" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Код специальности по сертификату</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="nsiSpecialityName" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Наименование специальности по сертификату</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element name="dateStart" nillable="true" type="xs:date">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Дата выдачи сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="dateEnd" type="xs:date">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Дата завершения действия сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="certSeries" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Серия сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="certNumber" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Номер сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                    </xs:sequence>
+
+                </xs:complexType>
+
+            </xs:element>
+
+            <xs:element name="startDate" nillable="true" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата приема на работу</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="endDate" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата увольнения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="TAPCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код медицинского работника для ТАП</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="preferentialCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код медицинского работника для льготных рецептов</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="workerCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Табельный номер</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="rate" type="xs:float">
+
+                <xs:annotation>
+
+                    <xs:documentation>Занимаемая ставка по данной должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="medicalEmployeeJobPacket2">
+
+        <xs:annotation>
+
+            <xs:documentation>Место работы медработника</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:sequence>
+
+            <xs:element name="healthOrg" type="ns1:organizationSimpleTypePacket">
+
+                <xs:annotation>
+
+                    <xs:documentation>Медицинское учреждение</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="healthOrgDep" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Подразделение медицинского учреждения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="assistanceType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид оказания помощи</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="assistanceCondition" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Условия оказания медицинской помощи</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="workPosition" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Должность</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="workPositionKind" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="workPositionType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Тип занятия должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="specialization" type="ns1:specializationType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Специализация МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="speciality" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Специальность МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="specialityCertificate">
+
+                <xs:annotation>
+
+                    <xs:documentation>Сертификат по специальности</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:complexType>
+
+                    <xs:sequence>
+
+                        <xs:element name="nsiTypeCode" type="ns1:nsiCodeType">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Код типа сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="nsiTypeName" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Наименование типа сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element name="nsiSpecialityCode" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Код специальности по сертификату</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="nsiSpecialityName" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Наименование специальности по сертификату</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element name="dateStart" nillable="true" type="xs:date">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Дата выдачи сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="dateEnd" type="xs:date">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Дата завершения действия сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="certSeries" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Серия сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                        <xs:element minOccurs="0" name="certNumber" type="xs:string">
+
+                            <xs:annotation>
+
+                                <xs:documentation>Номер сертификата</xs:documentation>
+
+                            </xs:annotation>
+
+                        </xs:element>
+
+                    </xs:sequence>
+
+                </xs:complexType>
+
+            </xs:element>
+
+            <xs:element name="startDate" nillable="true" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата приема на работу</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="endDate" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата увольнения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="TAPCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код медицинского работника для ТАП</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="preferentialCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код медицинского работника для льготных рецептов</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="workerCode">
+
+                <xs:annotation>
+
+                    <xs:documentation>Табельный номер</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">       </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="rate" type="xs:float">
+
+                <xs:annotation>
+
+                    <xs:documentation>Занимаемая ставка по данной должности</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="medicalEmployeeEducation">
+
+        <xs:annotation>
+
+            <xs:documentation>Образование медработника</xs:documentation>
+
+        </xs:annotation>
+
+        <xs:sequence>
+
+            <xs:element name="EducationType" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид образования</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="Agency" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Образовательное учреждение</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="FirstEduType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид образования по диплому</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="SecondEduType" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Вид послевузовского образования</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="Speciality" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Специализация</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="Certificate" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Сертификация </xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="DiplomaSeries">
+
+                <xs:annotation>
+
+                    <xs:documentation>Серия документа</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">
+
+                        <xs:maxLength value="20"/>
+
+                    </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="DiplomaNumber">
+
+                <xs:annotation>
+
+                    <xs:documentation>Номер документа</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:simpleType>
+
+                    <xs:restriction base="xs:string">
+
+                        <xs:maxLength value="20"/>
+
+                    </xs:restriction>
+
+                </xs:simpleType>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="DiplomaDate" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата получения документа</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="StartDate" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата начала обучения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="EndDate" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата окончания обучения/год окончения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="Degree" type="ns1:nsiShortType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Ученая степень</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="Cycle" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Цикл</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="Hours" type="xs:double">
+
+                <xs:annotation>
+
+                    <xs:documentation>Количество часов</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="medicalEmployeePacketInfo">
+
+        <xs:sequence>
+
+            <xs:element name="EmployeeID" type="ns1:emiasIdType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Идентификатор МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="RequestResult" type="ns2:errorType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Идентификатор МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="Info" type="ns1:medicalEmployeeInfoShort">
+
+                <xs:annotation>
+
+                    <xs:documentation>Основная информация </xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Job">
+
+                <xs:annotation>
+
+                    <xs:documentation>Места работы МР</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:complexType>
+
+                    <xs:sequence>
+
+                        <xs:element name="ID" type="ns1:emiasIdType"/>
+
+                        <xs:element name="JobEntry" type="medicalEmployeeJobPacket"/>
+
+                    </xs:sequence>
+
+                </xs:complexType>
+
+            </xs:element>
+
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Education" type="medicalEmployeeEducation">
+
+                <xs:annotation>
+
+                    <xs:documentation>Образование МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Certification" type="newCertification">
+
+                <xs:annotation>
+
+                    <xs:documentation>Образование МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="medicalEmployeePacketInfo2">
+
+        <xs:sequence>
+
+            <xs:element name="EmployeeID" type="ns1:emiasIdType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Идентификатор МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="RequestResult" type="ns2:errorType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Идентификатор МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="Info" type="ns1:medicalEmployeeInfoShort">
+
+                <xs:annotation>
+
+                    <xs:documentation>Основная информация </xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Job">
+
+                <xs:annotation>
+
+                    <xs:documentation>Места работы МР</xs:documentation>
+
+                </xs:annotation>
+
+                <xs:complexType>
+
+                    <xs:sequence>
+
+                        <xs:element name="ID" type="ns1:emiasIdType"/>
+
+                        <xs:element name="JobEntry" type="medicalEmployeeJobPacket2"/>
+
+                    </xs:sequence>
+
+                </xs:complexType>
+
+            </xs:element>
+
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Education" type="medicalEmployeeEducation">
+
+                <xs:annotation>
+
+                    <xs:documentation>Образование МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Certification" type="newCertification">
+
+                <xs:annotation>
+
+                    <xs:documentation>Образование МР</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="medicalEmployeePermit">
+
+        <xs:sequence>
+
+            <xs:element name="PermitType" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Тип распоряжения о работе врача</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="PermitCode" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код распоряжения о работе врача</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="DateFr" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата начала действия</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="DateTo" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата окончания действия </xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="MUID" type="ns1:emiasIdType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Медицинская организация</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="medicalEmployeeSpecPermit">
+
+        <xs:sequence>
+
+            <xs:element name="SPECID" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>ИД_Специализации</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element maxOccurs="200" minOccurs="0" name="SPEC" type="medicalEmployeePermit">
+
+                <xs:annotation>
+
+                    <xs:documentation>Список разрешений</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="newCertification">
+
+        <xs:sequence>
+
+            <xs:element name="typeCode" type="ns1:nsiCodeType">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код типа сертификата</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="typeName" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Наименование типа сертификата</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="specialityCode" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код специальности по сертификату</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="specialityName" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Наименование специальности по сертификату</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element name="dateStart" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата выдачи сертификата</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="dateEnd" type="xs:date">
+
+                <xs:annotation>
+
+                    <xs:documentation>Дата завершения действия сертификата</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="series" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Серия сертификата</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="number" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Номер сертификата</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="institutionCode" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Код образовательного учреждения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+            <xs:element minOccurs="0" name="institutionName" type="xs:string">
+
+                <xs:annotation>
+
+                    <xs:documentation>Наименование образовательного учреждения</xs:documentation>
+
+                </xs:annotation>
+
+            </xs:element>
+
+        </xs:sequence>
+
+    </xs:complexType>
+
+</xs:schema>

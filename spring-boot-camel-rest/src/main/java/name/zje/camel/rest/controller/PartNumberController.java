@@ -38,13 +38,14 @@ public class PartNumberController {
         return partNumbers;
     }
 
-    public  PartNumber read(int id, Exchange exchange) {
+    public PartNumber read(int id, Exchange exchange) {
         final PartNumber partNumber = partNumberService.read(id);
         if (partNumber != null) {
             exchange.getIn().setHeader(Exchange.HTTP_RESPONSE_CODE, HttpStatus.OK.value());
         } else {
             exchange.getIn().setHeader(Exchange.HTTP_RESPONSE_CODE, HttpStatus.NO_CONTENT.value());
-        } return partNumber;
+        }
+        return partNumber;
     }
 
     public ResponseEntity<?> update(int id, Exchange exchange) {

@@ -18,26 +18,26 @@ public class RestRouteBuilder extends RouteBuilder {
 
         rest().description("Part numbers REST service")
             .get("/partnumbers")
-                .to("direct:partnumbersReadAll")
+            .to("direct:partnumbersReadAll")
             .get("/partnumbers/{id}")
-                .to("direct:partnumberRead")
+            .to("direct:partnumberRead")
             .delete("/partnumbers/{id}")
-                .to("direct:partnumberDelete")
+            .to("direct:partnumberDelete")
             .post("/partnumbers")
-                 .type(PartNumber.class)
-                 .to("direct:partnumberCreate")
+            .type(PartNumber.class)
+            .to("direct:partnumberCreate")
             .put("/partnumbers/{id}")
-                .type(PartNumber.class)
-                .to("direct:partnumberUpdate");
+            .type(PartNumber.class)
+            .to("direct:partnumberUpdate");
 
-            from("direct:partnumbersReadAll")
-                .bean(PartNumberController.class, "readAll");
-            from("direct:partnumberCreate")
-                .bean(PartNumberController.class, "create");
-            from("direct:partnumberRead")
-                .bean(PartNumberController.class, "read(${header.id})");
-            from("direct:partnumberDelete")
-                .bean(PartNumberController.class, "delete(${header.id})");
+        from("direct:partnumbersReadAll")
+            .bean(PartNumberController.class, "readAll");
+        from("direct:partnumberCreate")
+            .bean(PartNumberController.class, "create");
+        from("direct:partnumberRead")
+            .bean(PartNumberController.class, "read(${header.id})");
+        from("direct:partnumberDelete")
+            .bean(PartNumberController.class, "delete(${header.id})");
         from("direct:partnumberUpdate")
             .bean(PartNumberController.class, "update(${header.id})");
 
