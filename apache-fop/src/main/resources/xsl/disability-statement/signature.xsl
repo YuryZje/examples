@@ -20,20 +20,12 @@
                             <fo:block><xsl:text> </xsl:text></fo:block>
                         </fo:table-cell>
                         <fo:table-cell border="solid blue 1px">
-                            <fo:block>Документ подписан усиленной квалифицированной электронной подписью
+                            <fo:block><fo:block>Документ подписан</fo:block><fo:block>электронной подписью</fo:block>
                                 <fo:block>
                                     <fo:table table-layout="fixed" width="100%" text-align="left">
-                                        <fo:table-column column-width="40%"/>
-                                        <fo:table-column column-width="60%"/>
+                                        <fo:table-column column-width="30%"/>
+                                        <fo:table-column column-width="70%"/>
                                         <fo:table-body>
-                                            <fo:table-row >
-                                                <fo:table-cell>
-                                                    <fo:block><xsl:text>Организация</xsl:text></fo:block>
-                                                </fo:table-cell>
-                                                <fo:table-cell>
-                                                    <fo:block><xsl:value-of select="$SIGNATURE.ORG"/></fo:block>
-                                                </fo:table-cell>
-                                            </fo:table-row>
                                             <fo:table-row >
                                                 <fo:table-cell>
                                                     <fo:block><xsl:text>Сертификат</xsl:text></fo:block>
@@ -44,7 +36,7 @@
                                             </fo:table-row>
                                             <fo:table-row>
                                                 <fo:table-cell>
-                                                    <fo:block><xsl:text>Издатель</xsl:text></fo:block>
+                                                    <fo:block><xsl:text>Владелец</xsl:text></fo:block>
                                                 </fo:table-cell>
                                                 <fo:table-cell>
                                                     <fo:block><xsl:value-of select="$PUBLISHER"/></fo:block>
