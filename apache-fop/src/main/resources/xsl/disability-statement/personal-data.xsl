@@ -19,7 +19,7 @@
         </xsl:variable>
 
         <fo:block font-size="14pt" text-align="center" padding-top="5mm">
-            Профиль <xsl:value-of select="$actualDisabilityInformationExist"/>
+            Профиль
         </fo:block>
         <fo:block font-size="10pt">
             <fo:table table-layout="fixed" width="100%">
