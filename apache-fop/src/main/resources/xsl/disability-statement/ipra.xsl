@@ -94,7 +94,7 @@
                         <fo:table-row border-bottom="solid black 1px">
                             <fo:table-cell>
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
-                                    ИПРА<xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> разработана:
+                                    ИПРА <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> разработана:
                                 </fo:block>
                             </fo:table-cell>
                             <fo:table-cell>

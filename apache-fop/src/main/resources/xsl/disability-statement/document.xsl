@@ -42,7 +42,17 @@
                                     </fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell>
-                                    <fo:block text-align="center">Согласен</fo:block>
+                                    <xsl:variable name="employmentServiceHelpAgree">
+                                        <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.PROF.GENERAL', 'EmploymentServiceHelpAgree')"/>
+                                    </xsl:variable>
+                                    <xsl:choose>
+                                        <xsl:when test="$employmentServiceHelpAgree = 'true'">
+                                            <fo:block text-align="center">Согласен</fo:block>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <fo:block text-align="center">Не согласен</fo:block>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </fo:table-cell>
                             </fo:table-row>
                         </fo:table-body>
@@ -66,11 +76,11 @@
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
-        <xsl:if test="fri:find-category(//fri:Запись, 'MSE.IPRA.PROF.GENERAL') != ''">
+        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.PROF.GENERAL') != ''">
             <fo:block padding-top="3mm">
                 <xsl:call-template name="ipraProfGeneral">
                     <xsl:with-param name="friExtract"
-                                    select="fri:ВсеДокументы/fri:Документ/fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.PROF.GENERAL']/ancestor::fri:Запись[1]"/>
+                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.PROF.GENERAL']/ancestor::fri:Запись[1]"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
