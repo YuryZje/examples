@@ -266,6 +266,24 @@
             </fo:block>
         </xsl:if>
         <xsl:if test="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'Number') != ''">
+            <fo:block font-size="8pt" padding-top="1mm">
+                <fo:table table-layout="fixed" width="100%" text-align="center">
+                    <fo:table-column column-width="50%"/>
+                    <fo:table-column column-width="50%"/>
+                    <fo:table-body>
+                        <fo:table-row>
+                            <fo:table-cell border="none" text-align="left">
+                                <fo:block>Дата окончания действия индивидуальной программы реабилитации или абилитации</fo:block>
+                            </fo:table-cell>
+                            <fo:table-cell border="none" text-align="left">
+                                <fo:block>
+                                    <xsl:value-of select="fri:format-date(fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'EndDate'))"/>
+                                </fo:block>
+                            </fo:table-cell>
+                        </fo:table-row>
+                    </fo:table-body>
+                </fo:table>
+            </fo:block>
             <fo:block padding-top="3mm" text-align="center">
                 <fo:block font-size="16pt">Исполнение ИПРА/ПРП</fo:block>
                 <fo:block font-size="6pt" padding-top="3mm">

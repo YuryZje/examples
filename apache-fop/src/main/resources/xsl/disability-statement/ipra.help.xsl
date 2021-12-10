@@ -41,17 +41,6 @@
                             </fo:table-cell>
                         </fo:table-row>
                     </xsl:for-each>
-
-                    <fo:table-row>
-                        <fo:table-cell border="solid black 1px" text-align="left">
-                            <fo:block>Дата окончания действия индивидуальной программы реабилитации или абилитации</fo:block>
-                        </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" text-align="left">
-                            <fo:block>
-                               <xsl:value-of select="fri:format-date(fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'EndDate'))"/>
-                            </fo:block>
-                        </fo:table-cell>
-                    </fo:table-row>
                 </fo:table-body>
             </fo:table>
         </fo:block>
