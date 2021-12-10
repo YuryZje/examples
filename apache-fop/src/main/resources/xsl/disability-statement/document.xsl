@@ -157,6 +157,33 @@
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
+        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.FEDERAL') != ''">
+            <xsl:variable name="needTransportHelpConcl">
+                <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.TSR.FEDERAL', 'NeedTransportHelpConcl')"/>
+            </xsl:variable>
+            <xsl:if test="$needTransportHelpConcl != ''">
+                <fo:block padding-top="3mm" font-size="8pt">
+                    <fo:table table-layout="fixed" width="100%">
+                        <fo:table-column column-width="50%"/>
+                        <fo:table-column column-width="50%"/>
+                        <fo:table-body>
+                            <fo:table-row>
+                                <fo:table-cell>
+                                    <fo:block>
+                                        <xsl:value-of select="fri:find-attribute-name(.//fri:Запись, 'MSE.IPRA.TSR.FEDERAL', 'NeedTransportHelpConcl')"/>
+                                    </fo:block>
+                                </fo:table-cell>
+                                <fo:table-cell>
+                                    <fo:block text-align="left">
+                                        <xsl:value-of select="$needTransportHelpConcl"/>
+                                    </fo:block>
+                                </fo:table-cell>
+                            </fo:table-row>
+                        </fo:table-body>
+                    </fo:table>
+                </fo:block>
+            </xsl:if>
+        </xsl:if>
         <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.OWNMONEY.ITEM') != ''">
             <fo:block padding-top="3mm">
                 <xsl:call-template name="ipraTsr">
@@ -200,11 +227,39 @@
                 </fo:table>
             </fo:block>
         </xsl:if>
+        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.MSK') != '' or fri:find-category(.//fri:Запись, 'MSE.IPRA.REHAB') != ''">
+            <fo:block padding-top="3mm">
+                <xsl:call-template name="ipraTsrMskRehab">
+                    <xsl:with-param name="friExtractTsr"
+                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.TSR.MSK']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="friExtractRehab"
+                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.REHAB']/ancestor::fri:Запись[1]"/>
+                </xsl:call-template>
+            </fo:block>
+        </xsl:if>
+        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.REGIONAL.ITEM') != ''">
+            <fo:block padding-top="3mm">
+                <xsl:call-template name="ipraTsr">
+                    <xsl:with-param name="friExtract" select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.TSR.REGIONAL.ITEM']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="header" select="''"/>
+                </xsl:call-template>
+            </fo:block>
+        </xsl:if>
         <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.HELPITEM') != ''">
             <fo:block padding-top="3mm">
                 <xsl:call-template name="ipraHelp">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.HELPITEM']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="isChild" select="$isChild"/>
+                </xsl:call-template>
+            </fo:block>
+        </xsl:if>
+        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.FORECAST') != ''">
+            <fo:block padding-top="3mm">
+                <xsl:call-template name="commonKeyValue">
+                    <xsl:with-param name="friExtract"
+                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.FORECAST']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="header" select="'Восстановление нарушенных функций'"/>
                     <xsl:with-param name="isChild" select="$isChild"/>
                 </xsl:call-template>
             </fo:block>

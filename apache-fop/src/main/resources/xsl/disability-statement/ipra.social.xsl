@@ -39,7 +39,7 @@
                     <xsl:call-template name="show-attribute-row">
                         <xsl:with-param name="attribute" select="$needHouseToolsForWheelChair"/>
                         <xsl:with-param name="attrType" select="fri:find-local-attribute-type($friExtract, 'NeedHouseToolsForWheelChair')"/>
-                        <xsl:with-param name="caption" select="'Для инвалидов, имеющих нарушения здоровья со стойким расстройством функции опорно-двигательного аппарата, в том числе'"/>
+                        <xsl:with-param name="caption" select="'Для инвалидов, имеющих нарушения здоровья со стойким расстройством функции опорно-двигательного аппарата, в том числе передвигающегося с использованием кресла-коляски'"/>
                     </xsl:call-template>
                     <xsl:call-template name="show-attribute-row">
                         <xsl:with-param name="attribute" select="$needHouseToolsForBadHearing"/>

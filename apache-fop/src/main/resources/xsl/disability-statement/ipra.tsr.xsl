@@ -14,7 +14,10 @@
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
             <fo:block margin-left="5mm">
-                <xsl:value-of select="$header"/>
+                <xsl:choose>
+                    <xsl:when test="$header != ''"><xsl:value-of select="$header"/></xsl:when>
+                    <xsl:otherwise><xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/></xsl:otherwise>
+                </xsl:choose>
             </fo:block>
         </fo:block>
         <fo:block font-size="6pt" padding-top="3mm">
@@ -29,7 +32,7 @@
                             <fo:block>Перечень ТСР и услуг по реабилитации или абилитации</fo:block>
                         </fo:table-cell>
                         <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
-                            <fo:block>Количеств</fo:block>
+                            <fo:block>Количество</fo:block>
                         </fo:table-cell>
                         <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
                             <fo:block>Срок, в течение которого рекомендовано проведение реабилитационных или абилитационных мероприятий</fo:block>

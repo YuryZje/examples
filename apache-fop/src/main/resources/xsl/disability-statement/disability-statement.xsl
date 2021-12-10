@@ -26,6 +26,8 @@
     <xsl:import href="ipra.tsr.xsl"/>
     <xsl:import href="ipra.help.xsl"/>
     <xsl:import href="vch.xsl"/>
+    <xsl:import href="ipra.tsr.msk.rehab.xsl"/>
+    <xsl:import href="common.key.value.xsl"/>
     <xsl:import href="signature.xsl"/>
 
     <xsl:template match="fri:ВыпискаФРИ">

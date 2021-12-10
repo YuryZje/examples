@@ -27,6 +27,23 @@
         <xsl:value-of select="$value"/>
     </xsl:function>
 
+    <xsl:function name="fri:find-attribute-name">
+        <xsl:param name="node"/>
+        <xsl:param name="category"/>
+        <xsl:param name="attribute"/>
+
+        <xsl:variable name="value">
+            <xsl:for-each select="$node">
+                <xsl:if test="child::fri:Категория/fri:Код/text() = $category">
+                    <xsl:for-each select="child::fri:ВсеАтрибуты/fri:Атрибут/fri:Код[text() = $attribute]">
+                        <xsl:value-of select="../fri:Наименование"/>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:value-of select="$value"/>
+    </xsl:function>
+
     <xsl:function name="fri:find-category">
         <xsl:param name="node"/>
         <xsl:param name="category"/>
