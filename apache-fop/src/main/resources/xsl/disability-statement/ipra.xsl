@@ -107,7 +107,7 @@
                                         </xsl:choose>
                                     </xsl:variable>
                                     <xsl:variable name="ipraEndDate">
-                                        <xsl:value-of select="fri:find-local-attribute-value(. , 'EndDate')"/>
+                                        <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'EndDate')"/>
                                     </xsl:variable>
                                     <xsl:value-of select="$isFirst"/>
                                     <xsl:if test="$ipraEndDate != ''">

@@ -9,10 +9,11 @@
 
     <xsl:template name="ipraProfGeneral">
         <xsl:param name="friExtract"/>
+        <xsl:param name="isChild"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
             <fo:block margin-left="5mm">
-                Рекомендации по оснащению (оборудованию) специального рабочего места для трудоустройства
+                Рекомендации по оснащению (оборудованию) специального рабочего места для трудоустройства <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/>
             </fo:block>
         </fo:block>
         <xsl:variable name="needSpecialWorkPlaceRecom">

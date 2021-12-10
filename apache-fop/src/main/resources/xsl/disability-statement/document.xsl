@@ -81,6 +81,7 @@
                 <xsl:call-template name="ipraProfGeneral">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.PROF.GENERAL']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="isChild" select="$isChild"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
@@ -153,7 +154,7 @@
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.TSR.FEDERAL.ITEM']/ancestor::fri:Запись[1]"/>
                     <xsl:with-param name="header"
                                     select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые ',
-                                                fri:invalid-type-name($isChild, 'Д'), ' за счет средств бюджета субъекта Российской Федерации')"/>
+                                                fri:invalid-type-name($isChild, 'Д'), ' за счет средств федерального бюджета')"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
@@ -259,7 +260,7 @@
                 <xsl:call-template name="commonKeyValue">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.FORECAST']/ancestor::fri:Запись[1]"/>
-                    <xsl:with-param name="header" select="'Восстановление нарушенных функций'"/>
+                    <xsl:with-param name="header" select="'Прогнозируемый результат'"/>
                     <xsl:with-param name="isChild" select="$isChild"/>
                 </xsl:call-template>
             </fo:block>

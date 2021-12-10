@@ -32,9 +32,7 @@
                                 <xsl:variable name="surname" select="fri:Фамилия"/>
                                 <xsl:variable name="name" select="fri:Имя"/>
                                 <xsl:variable name="patronymic" select="fri:Отчество"/>
-                                <xsl:value-of select="fri:string-capitalize($surname)"/>&#160;<xsl:value-of
-                                    select="fri:string-capitalize($name)"/>&#160;<xsl:value-of
-                                    select="fri:string-capitalize($patronymic)"/>
+                                <xsl:value-of select="fri:string-capitalize($name)"/>&#160;<xsl:value-of select="fri:string-capitalize($patronymic)"/>&#160;<xsl:value-of select="fri:string-capitalize($surname)"/>
                             </fo:block>
                             <fo:block padding-bottom="5mm">
                                 Дата рождения:<xsl:value-of select="fri:format-date(fri:ДатаРождения)"/>
