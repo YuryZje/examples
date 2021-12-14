@@ -77,12 +77,12 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <fo:table-row>
-                                <fo:table-cell border="solid black 1px" text-align="left">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>
                                         <xsl:text>Рекомендации по оснащению (оборудованию) специального рабочего места для трудоустройства инвалида</xsl:text>
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell border="solid black 1px" text-align="left">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>
                                         <xsl:text>Отсутствуют</xsl:text>
                                     </fo:block>
@@ -125,12 +125,12 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <fo:table-row>
-                                <fo:table-cell border="solid black 1px" text-align="left">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>
                                         <xsl:text>Рекомендации по производственной адаптации</xsl:text>
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell border="solid black 1px" text-align="left">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>
                                         <xsl:text>Отсутствуют</xsl:text>
                                     </fo:block>

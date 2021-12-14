@@ -19,7 +19,7 @@
                         <fo:table-cell number-columns-spanned="3">
                             <fo:block><xsl:text> </xsl:text></fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid blue 1px">
+                        <fo:table-cell padding="2px" border="solid blue 1px">
                             <fo:block><fo:block>Документ подписан</fo:block><fo:block>электронной подписью</fo:block>
                                 <fo:block>
                                     <fo:table table-layout="fixed" width="100%" text-align="left">

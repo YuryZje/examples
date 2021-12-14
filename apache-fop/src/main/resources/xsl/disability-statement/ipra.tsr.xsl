@@ -28,16 +28,16 @@
                 <fo:table-column column-width="25%"/>
                 <fo:table-header>
                     <fo:table-row>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Перечень ТСР и услуг по реабилитации или абилитации</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Количество</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Срок, в течение которого рекомендовано проведение реабилитационных или абилитационных мероприятий</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Исполнитель рекомендованных реабилитационных или абилитационных мероприятий</fo:block>
                         </fo:table-cell>
                     </fo:table-row>
@@ -45,17 +45,17 @@
                 <fo:table-body>
                     <xsl:for-each select="$friExtract">
                         <fo:table-row>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:value-of select="fri:find-local-attribute-value(., 'Name')"/>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:value-of select="fri:find-local-attribute-value(., 'Quantity')"/>&#160;<xsl:value-of select="fri:find-local-attribute-value(., 'UnitName')"/>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:variable name="from">
                                         <xsl:value-of select="fri:find-local-attribute-value(., 'From')"/>
@@ -66,7 +66,7 @@
                                     <xsl:value-of select="concat(fri:format-date($from), ' - ', fri:format-date($to))"/>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:value-of select="fri:find-local-attribute-value(., 'Executor')"/>
                                 </fo:block>

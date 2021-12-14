@@ -24,19 +24,19 @@
                             <fo:table-column column-width="3cm"/>
                             <fo:table-header>
                                 <fo:table-row>
-                                    <fo:table-cell border="solid black 1px" padding="2px" font-weight="bold"
+                                    <fo:table-cell padding="2px" border="solid black 1px"font-weight="bold"
                                                    text-align="center">
                                         <fo:block>Id</fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell border="solid black 1px" padding="2px" font-weight="bold"
+                                    <fo:table-cell padding="2px" border="solid black 1px" font-weight="bold"
                                                    text-align="center">
                                         <fo:block>Model</fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell border="solid black 1px" padding="2px" font-weight="bold"
+                                    <fo:table-cell padding="2px" border="solid black 1px" font-weight="bold"
                                                    text-align="center">
                                         <fo:block>Производитель</fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell border="solid black 1px" padding="2px" font-weight="bold"
+                                    <fo:table-cell padding="2px" border="solid black 1px" font-weight="bold"
                                                    text-align="center">
                                         <fo:block>Year</fo:block>
                                     </fo:table-cell>

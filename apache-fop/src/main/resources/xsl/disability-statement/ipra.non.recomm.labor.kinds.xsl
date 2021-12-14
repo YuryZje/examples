@@ -22,10 +22,10 @@
                 <fo:table-column column-width="50%"/>
                 <fo:table-header>
                     <fo:table-row>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Вид стойких нарушений функций организма человека</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Рекомендации о противопоказанных видах трудовой деятельности</fo:block>
                         </fo:table-cell>
                     </fo:table-row>
@@ -33,12 +33,12 @@
                 <fo:table-body>
                     <xsl:for-each select="$friExtract/fri:ВсеАтрибуты/fri:Атрибут">
                         <fo:table-row>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:value-of select="./fri:Наименование"/>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:variable name="attrType"><xsl:value-of select="./fri:ТипДанных"/></xsl:variable>
                                     <xsl:choose>

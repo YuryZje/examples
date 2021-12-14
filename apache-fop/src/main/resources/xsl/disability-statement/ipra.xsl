@@ -27,26 +27,26 @@
                     <fo:table-column column-width="50%"/>
                     <fo:table-body>
                         <fo:table-row border-bottom="solid black 1px">
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     Номер индивидуальной программы реабилитации или
                                     абилитации <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/>:
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <xsl:value-of select="$ipraNumber"/>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
                         <fo:table-row border-bottom="solid black 1px">
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     Номер и дата протокола проведения медико-социальной
                                     экспертизы:
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <fo:block>
                                         <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'ProtocolNum')"/>
@@ -62,12 +62,12 @@
                         </xsl:variable>
                         <xsl:if test="$rehabPotentialValue != ''">
                             <fo:table-row border-bottom="solid black 1px">
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                         Реабилитационный или абилитационный потенциал:
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                         <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'RehabPotentialValue')"/>
                                     </fo:block>
@@ -79,12 +79,12 @@
                         </xsl:variable>
                         <xsl:if test="$rehabPrognozValue != ''">
                             <fo:table-row border-bottom="solid black 1px">
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                         Реабилитационный или абилитационный прогноз:
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                         <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'RehabPrognozValue')"/>
                                     </fo:block>
@@ -92,12 +92,12 @@
                             </fo:table-row>
                         </xsl:if>
                         <fo:table-row border-bottom="solid black 1px">
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     ИПРА <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> разработана:
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <xsl:variable name="isFirst">
                                         <xsl:choose>
@@ -127,14 +127,14 @@
                         </xsl:variable>
                         <xsl:if test="$isIntramural != ''">
                             <fo:table-row border-bottom="solid black 1px">
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                         ИПРА
                                         <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> разрабатывалась при очном, заочном
                                         проведении медико-социальной экспертизы:
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                         <xsl:choose>
                                             <xsl:when test="$isIntramural = 'true'">Очно</xsl:when>
@@ -217,14 +217,14 @@
                 </fo:table>
             </fo:block>
         </fo:block>
-        <xsl:if test="fri:find-category(.//fri:Запись, 'VHC.VEHICLE') != ''">
+       <!-- <xsl:if test="fri:find-category(.//fri:Запись, 'VHC.VEHICLE') != ''">
             <fo:block padding-top="3mm">
                 <xsl:call-template name="ipraVHC">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'VHC.VEHICLE']/ancestor::fri:Запись[1]"/>
                 </xsl:call-template>
             </fo:block>
-        </xsl:if>
+        </xsl:if>-->
     </xsl:template>
 
 </xsl:stylesheet>

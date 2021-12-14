@@ -36,12 +36,12 @@
                 <fo:table-body>
                     <xsl:if test="$needsExtraBreaks = 'true'">
                         <fo:table-row>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:text>Нуждается в дополнительных перерывах</xsl:text>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:text>Нуждается</xsl:text>
                                 </fo:block>
@@ -50,12 +50,12 @@
                     </xsl:if>
                     <xsl:if test="$optimalWorkingConditions = 'true'">
                         <fo:table-row>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:text>Доступны виды трудовой деятельности в оптимальных, допустимых условиях труда</xsl:text>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:text>Доступны</xsl:text>
                                 </fo:block>
@@ -64,12 +64,12 @@
                     </xsl:if>
                     <xsl:if test="$anyEnvirButWithDifficulties = 'true'">
                         <fo:table-row>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:text>Доступны виды трудовой деятельности в любых условиях труда, но выполнение трудовой деятельности может быть затруднено</xsl:text>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:text>Доступны</xsl:text>
                                 </fo:block>
@@ -78,12 +78,12 @@
                     </xsl:if>
                     <xsl:if test="$withAssistanceFromOthers = 'true'">
                         <fo:table-row>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:text>Трудовая деятельность возможна при значительной помощи других лиц</xsl:text>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:text>Возможна</xsl:text>
                                 </fo:block>

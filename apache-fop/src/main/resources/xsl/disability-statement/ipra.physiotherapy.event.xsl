@@ -10,10 +10,14 @@
 
     <xsl:template name="ipraPhysiotherapyEvent">
         <xsl:param name="friExtract"/>
+        <xsl:param name="header"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
             <fo:block margin-left="5mm">
-                <xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/>
+                <xsl:choose>
+                    <xsl:when test="$header != ''"><xsl:value-of select="$header"/></xsl:when>
+                    <xsl:otherwise><xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/></xsl:otherwise>
+                </xsl:choose>
             </fo:block>
         </fo:block>
         <fo:block font-size="6pt" padding-top="3mm">
@@ -23,13 +27,13 @@
                 <fo:table-column column-width="34%"/>
                 <fo:table-header>
                     <fo:table-row>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Виды, формы и объемы рекомендованных реабилитационных или абилитационных мероприятий</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Срок, в течение которого рекомендовано проведение реабилитационных или абилитационных мероприятий</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Исполнитель рекомендованных реабилитационных или абилитационных мероприятий</fo:block>
                         </fo:table-cell>
                     </fo:table-row>
@@ -37,12 +41,12 @@
                 <fo:table-body>
                     <xsl:for-each select="$friExtract">
                         <fo:table-row>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:value-of select="fri:find-local-attribute-value(., 'GroupTypeName')"/>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:variable name="from">
                                         <xsl:value-of select="fri:find-local-attribute-value(., 'From')"/>
@@ -53,7 +57,7 @@
                                     <xsl:value-of select="concat(fri:format-date($from), ' - ', fri:format-date($to))"/>
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell border="solid black 1px" text-align="left">
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:value-of select="fri:find-local-attribute-value(., 'Executor')"/>
                                 </fo:block>

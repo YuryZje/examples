@@ -88,24 +88,8 @@
 
     <xsl:function name="fri:format-date-time">
         <xsl:param name="value"/>
-
         <xsl:if test="$value != ''">
-            <xsl:variable name="yyyy">
-                <xsl:value-of select="substring($value, 1, 4)"/>
-            </xsl:variable>
-            <xsl:variable name="mm">
-                <xsl:value-of select="substring($value, 5, 2)"/>
-            </xsl:variable>
-            <xsl:variable name="dd">
-                <xsl:value-of select="substring($value, 7, 2)"/>
-            </xsl:variable>
-            <xsl:variable name="hh">
-                <xsl:value-of select="substring($value, 9, 2)"/>
-            </xsl:variable>
-            <xsl:variable name="mm">
-                <xsl:value-of select="substring($value, 11, 2)"/>
-            </xsl:variable>
-            <xsl:value-of select="concat($dd, '.', $mm, '.', $yyyy, ' ', $hh, ':', $mm)"/>
+            <xsl:value-of select="format-dateTime(xs:dateTime($value), '[D01].[M01].[Y0001] [H01]:[m01]')"/>
         </xsl:if>
     </xsl:function>
 

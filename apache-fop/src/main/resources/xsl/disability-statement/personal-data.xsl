@@ -27,7 +27,7 @@
                 <fo:table-column column-width="50%"/>
                 <fo:table-body>
                     <fo:table-row>
-                        <fo:table-cell>
+                        <fo:table-cell padding="2px">
                             <fo:block>
                                 <xsl:variable name="surname" select="fri:Фамилия"/>
                                 <xsl:variable name="name" select="fri:Имя"/>
@@ -38,25 +38,25 @@
                                 Дата рождения:<xsl:value-of select="fri:format-date(fri:ДатаРождения)"/>
                             </fo:block>
                         </fo:table-cell>
-                        <fo:table-cell>
+                        <fo:table-cell padding="2px">
                             <fo:block></fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                     <fo:table-row border-bottom="solid black 1px">
-                        <fo:table-cell>
+                        <fo:table-cell padding="2px">
                             <fo:block padding-bottom="0.5mm" padding-top="0.5mm">СНИЛС:</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell>
+                        <fo:table-cell padding="2px">
                             <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                 <xsl:value-of select="fri:СНИЛС"/>
                             </fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                     <fo:table-row border-bottom="solid black 1px">
-                        <fo:table-cell>
+                        <fo:table-cell padding="2px">
                             <fo:block padding-bottom="0.5mm" padding-top="0.5mm">Место жительства:</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell>
+                        <fo:table-cell padding="2px">
                             <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                 <xsl:value-of select="fri:find-attribute-value(//fri:Запись, 'GENERAL.ADDRESS', 'AddressString')"/>
                             </fo:block>
@@ -64,10 +64,10 @@
                     </fo:table-row>
                     <xsl:if test="$actualDisabilityInformationExist='true'">
                         <fo:table-row border-bottom="solid black 1px">
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">Инвалидность установлена:</fo:block>
                             </fo:table-cell>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <xsl:choose>
                                         <xsl:when test="fri:АктуальныеСведенияОбИнвалидности/fri:ПервичнаяИнвалидность = 'false'">
@@ -82,20 +82,20 @@
                         </fo:table-row>
 
                         <fo:table-row border-bottom="solid black 1px">
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">Дата установления инвалидности:</fo:block>
                             </fo:table-cell>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <xsl:value-of select="fri:format-date(fri:АктуальныеСведенияОбИнвалидности/fri:ДатаС)"/>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
                         <fo:table-row border-bottom="solid black 1px">
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">Группа инвалидности:</fo:block>
                             </fo:table-cell>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <xsl:variable name="invalidGroup">
                                         <xsl:value-of select="fri:АктуальныеСведенияОбИнвалидности/fri:ГруппаИнвалидности"/>
@@ -112,10 +112,10 @@
                             </fo:table-cell>
                         </fo:table-row>
                         <fo:table-row border-bottom="solid black 1px">
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">Причина инвалидности:</fo:block>
                             </fo:table-cell>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <xsl:value-of select="fri:АктуальныеСведенияОбИнвалидности/fri:НаименованиеПричиныИнвалидности"/>
                                 </fo:block>

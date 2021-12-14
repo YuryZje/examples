@@ -3,7 +3,8 @@
                 xmlns:fri="http://fri.pfr.ru"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
-                exclude-result-prefixes="fo xs">
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="fo xs exsl">
 
     <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes"/>
 
@@ -28,6 +29,8 @@
     <xsl:import href="vch.xsl"/>
     <xsl:import href="ipra.tsr.msk.rehab.xsl"/>
     <xsl:import href="common.key.value.xsl"/>
+    <xsl:import href="ipra.forecast.xsl"/>
+    <xsl:import href="ipra.psychoped.event.xsl"/>
     <xsl:import href="signature.xsl"/>
 
     <xsl:template match="fri:ВыпискаФРИ">
@@ -52,11 +55,42 @@
                     </fo:block>
                     <xsl:apply-templates select="//fri:ПерсональныеДанные"/>
                     <xsl:apply-templates select="//fri:Документ[fri:find-category(.//fri:Запись, 'MSE.IPRA.GENERAL') != '']">
-                        <xsl:with-param name="isChild"><xsl:value-of select="$isChild"/></xsl:with-param>
+                        <xsl:with-param name="isChild">
+                            <xsl:value-of select="$isChild"/>
+                        </xsl:with-param>
                     </xsl:apply-templates>
                     <xsl:apply-templates select="//fri:Документ[fri:find-category(.//fri:Запись, 'MSE.IPRA.GENERAL') = '']">
-                        <xsl:with-param name="isChild"><xsl:value-of select="$isChild"/></xsl:with-param>
+                        <xsl:with-param name="isChild">
+                            <xsl:value-of select="$isChild"/>
+                        </xsl:with-param>
                     </xsl:apply-templates>
+
+                    <xsl:variable name="vhcExtract">
+                        <xsl:copy-of select="fri:ВсеДокументы/fri:Документ/fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'VHC.VEHICLE']/ancestor::fri:Запись[1]"/>
+                    </xsl:variable>
+                    <xsl:if test="$vhcExtract != ''">
+                        <fo:block padding-top="3mm">
+                            <fo:block font-size="6pt" padding-top="3mm">
+                                <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
+                                    <fo:block margin-left="5mm">
+                                        <xsl:for-each-group select="exsl:node-set($vhcExtract)/*/fri:Категория" group-by="fri:Наименование">
+                                            <xsl:value-of select="./fri:Наименование"/>
+                                        </xsl:for-each-group>
+                                    </fo:block>
+                                </fo:block>
+                                <fo:block padding-top="3mm">
+                                    <fo:table table-layout="fixed" width="100%" text-align="center">
+                                        <xsl:call-template name="ipraHeaderVHC">
+                                            <xsl:with-param name="friExtract" select="exsl:node-set($vhcExtract)/*"/>
+                                        </xsl:call-template>
+                                        <xsl:call-template name="ipraBodyVHC">
+                                            <xsl:with-param name="friExtract" select="exsl:node-set($vhcExtract)/*"/>
+                                        </xsl:call-template>
+                                    </fo:table>
+                                </fo:block>
+                            </fo:block>
+                        </fo:block>
+                    </xsl:if>
                     <xsl:call-template name="signature"/>
                 </fo:flow>
             </fo:page-sequence>

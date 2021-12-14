@@ -21,6 +21,14 @@
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.MED.EVENT']/ancestor::fri:Запись[1]"/>
                 </xsl:call-template>
             </xsl:if>
+            <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.PSYCHOPED.EVENT') != ''">
+                <fo:block padding-top="5mm">
+                    <xsl:call-template name="ipraPsychopedEvent">
+                        <xsl:with-param name="friExtract"
+                                        select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.PSYCHOPED.EVENT']/ancestor::fri:Запись[1]"/>
+                    </xsl:call-template>
+                </fo:block>
+            </xsl:if>
         </xsl:if>
         <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.PROF.EVENT') != ''">
             <fo:block padding-top="5mm">
@@ -34,14 +42,14 @@
                         <fo:table-column column-width="50%"/>
                         <fo:table-body>
                             <fo:table-row>
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block>
                                         Информация о согласии инвалида на обращение к нему органов
                                         службы занятости в целях оказания ему содействия в
                                         трудоустройстве и подбора подходящего рабочего места:
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <xsl:variable name="employmentServiceHelpAgree">
                                         <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.PROF.GENERAL', 'EmploymentServiceHelpAgree')"/>
                                     </xsl:variable>
@@ -98,7 +106,7 @@
                     <fo:table-column column-width="50%"/>
                     <fo:table-body>
                         <fo:table-row>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block>Заключение о возможности (невозможности) осуществлять самообслуживание и вести самостоятельный образ жизни
                                 </fo:block>
                             </fo:table-cell>
@@ -144,6 +152,7 @@
                 <xsl:call-template name="ipraPhysiotherapyEvent">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.PHYSIOTHERAPY.EVENT']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="header" select="'Физкультурно-оздоровительные мероприятия, мероприятия по занятию спортом'"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
@@ -171,7 +180,10 @@
                             <fo:table-row>
                                 <fo:table-cell>
                                     <fo:block>
-                                        <xsl:value-of select="fri:find-attribute-name(.//fri:Запись, 'MSE.IPRA.TSR.FEDERAL', 'NeedTransportHelpConcl')"/>
+                                        Сопровождение инвалида к месту нахождения организации, в
+                                        которую выдано направление для получения ТСР за счет
+                                        средств федерального бюджета, и обратно:
+                                        <!-- xsl:value-of select="fri:find-attribute-name(.//fri:Запись, 'MSE.IPRA.TSR.FEDERAL', 'NeedTransportHelpConcl')"/-->
                                     </fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell>
@@ -242,7 +254,8 @@
             <fo:block padding-top="3mm">
                 <xsl:call-template name="ipraTsr">
                     <xsl:with-param name="friExtract" select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.TSR.REGIONAL.ITEM']/ancestor::fri:Запись[1]"/>
-                    <xsl:with-param name="header" select="''"/>
+                    <xsl:with-param name="header" select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые
+                        ', fri:invalid-type-name($isChild, 'Род'), ' за счет средств бюджета субъекта Российской Федерации')"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
@@ -257,11 +270,9 @@
         </xsl:if>
         <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.FORECAST') != ''">
             <fo:block padding-top="3mm">
-                <xsl:call-template name="commonKeyValue">
+                <xsl:call-template name="ipraForecast">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.FORECAST']/ancestor::fri:Запись[1]"/>
-                    <xsl:with-param name="header" select="'Прогнозируемый результат'"/>
-                    <xsl:with-param name="isChild" select="$isChild"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
@@ -292,20 +303,20 @@
                         <fo:table-column column-width="50%"/>
                         <fo:table-body>
                             <fo:table-row>
-                                <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>Номер индивидуальной программы реабилитации или абилитации инвалида:</fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell border="solid black 1px" text-align="left">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>
                                         <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'Number')"/>
                                     </fo:block>
                                 </fo:table-cell>
                             </fo:table-row>
                             <fo:table-row>
-                                <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>Номер и дата протокола проведения медико-социальной экспертизы:</fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell border="solid black 1px" text-align="left">
+                                <fo:table-cell padding="2px"  border="solid black 1px" text-align="left">
                                     <fo:block>
                                         <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'ProtocolNum')"/>
                                         <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'ProtocolDate')"/>
@@ -313,10 +324,10 @@
                                 </fo:table-cell>
                             </fo:table-row>
                             <fo:table-row>
-                                <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                                <fo:table-cell padding="2px"  border="solid black 1px"  text-align="left">
                                     <fo:block>Сведения об исполнении мероприятий:</fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell border="solid black 1px" text-align="left">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>
                                         <xsl:variable name="fssRehabilitation">
                                             <xsl:value-of select="fri:find-category(.//fri:Запись, 'FSS.REHABILITATION')"/>
@@ -336,14 +347,6 @@
                         </fo:table-body>
                     </fo:table>
                 </fo:block>
-            </fo:block>
-        </xsl:if>
-        <xsl:if test="fri:find-category(.//fri:Запись, 'VHC.VEHICLE') != ''">
-            <fo:block padding-top="3mm">
-                <xsl:call-template name="ipraVHC">
-                    <xsl:with-param name="friExtract"
-                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'VHC.VEHICLE']/ancestor::fri:Запись[1]"/>
-                </xsl:call-template>
             </fo:block>
         </xsl:if>
     </xsl:template>

@@ -12,17 +12,17 @@
         <xsl:param name="node"/>
         <xsl:for-each select="$node">
             <fo:table-row>
-                <fo:table-cell border="solid black 1px" text-align="left">
+                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                     <fo:block>
                         <xsl:value-of select="fri:find-local-attribute-value(., 'Name')"/>
                     </fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="solid black 1px" text-align="left">
+                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                     <fo:block>
                         <xsl:value-of select="fri:find-local-attribute-value(., 'Quantity')"/>&#160;<xsl:value-of select="fri:find-local-attribute-value(., 'UnitName')"/>
                     </fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="solid black 1px" text-align="left">
+                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                     <fo:block>
                         <xsl:variable name="from">
                             <xsl:value-of select="fri:find-local-attribute-value(., 'From')"/>
@@ -43,7 +43,7 @@
                         </xsl:choose>
                     </fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="solid black 1px" text-align="left">
+                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                     <fo:block>
                         <xsl:value-of select="fri:find-local-attribute-value(., 'Executor')"/>
                     </fo:block>
@@ -69,16 +69,16 @@
                 <fo:table-column column-width="25%"/>
                 <fo:table-header>
                     <fo:table-row>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Перечень товаров и услуг, предназначенных для социальной адаптации и интеграции в общество детей-инвалидов, на приобретение которых направляются средства (часть средств) материнского (семейного) капитала</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Количество</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Срок, в течение которого рекомендовано проведение реабилитационных или абилитационных мероприятий с применением товаров и услуг, предназначенных для социальной адаптации и интеграции в общество детей-инвалидов, на приобретение которых направляются средства (часть средств) материнского (семейного) капитала</fo:block>
                         </fo:table-cell>
-                        <fo:table-cell border="solid black 1px" padding="1mm" text-align="center">
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
                             <fo:block>Исполнитель, осуществляющий компенсацию затрат на приобретение товаров и услуг, предназначенных для социальной адаптации и интеграции в общество детей-инвалидов, на приобретение которых направляются средства (часть средств) материнского (семейного) капитала</fo:block>
                         </fo:table-cell>
                     </fo:table-row>
