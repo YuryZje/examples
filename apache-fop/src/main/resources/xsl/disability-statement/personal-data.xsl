@@ -149,7 +149,7 @@
                             </fo:table-cell>
                             <fo:table-cell>
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
-                                    Номер:<xsl:value-of select="fri:АктуальныеСведенияОбИнвалидности/fri:НомерАктаМСЭ"/>
+                                    Номер: <xsl:value-of select="fri:АктуальныеСведенияОбИнвалидности/fri:НомерАктаМСЭ"/>
                                 </fo:block>
                                 <fo:block>
                                     Дата:
@@ -168,7 +168,7 @@
                             <fo:table-cell>
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <fo:block>
-                                        Серия:<xsl:value-of select="fri:АктуальныеСведенияОбИнвалидности/fri:СерияСправкиМСЭ"/>
+                                        Серия: <xsl:value-of select="fri:АктуальныеСведенияОбИнвалидности/fri:СерияСправкиМСЭ"/>
                                     </fo:block>
                                     <fo:block>
                                         Номер:
