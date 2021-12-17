@@ -10,10 +10,16 @@
 
     <xsl:template name="ipraEvent">
         <xsl:param name="friExtract"/>
+        <xsl:param name="header"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
             <fo:block margin-left="5mm">
-                <xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/>
+                <fo:block margin-left="5mm">
+                    <xsl:choose>
+                        <xsl:when test="$header != ''"><xsl:value-of select="$header"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/></xsl:otherwise>
+                    </xsl:choose>
+                </fo:block>
             </fo:block>
         </fo:block>
         <fo:block font-size="6pt" padding-top="3mm">
@@ -64,7 +70,17 @@
                                     <xsl:variable name="from">
                                         <xsl:value-of select="fri:find-local-attribute-value(., 'From')"/>
                                     </xsl:variable>
-                                    <xsl:value-of select="concat(fri:format-date($from), '-', fri:format-date($to))"/>
+                                    <xsl:variable name="toDescr">
+                                        <xsl:value-of select="fri:find-local-attribute-value(., 'ToDescr')"/>
+                                    </xsl:variable>
+                                    <xsl:choose>
+                                        <xsl:when test="$to != ''">
+                                            <xsl:value-of select="concat(fri:format-date($from), ' - ', fri:format-date($to))"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="concat(fri:format-date($from), ' - ', $toDescr)"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </fo:block>
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">

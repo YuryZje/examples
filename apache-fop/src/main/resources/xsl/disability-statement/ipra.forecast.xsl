@@ -18,7 +18,7 @@
                         <xsl:value-of select="$functionName"/>
                     </fo:block>
                 </fo:table-cell>
-                <fo:table-cell border="solid black 1px" text-align="left">
+                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                     <fo:block>
                         <xsl:value-of select="$functionValue"/>
                     </fo:block>
@@ -57,10 +57,6 @@
                         <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'MoveIndependentlyValue')"/>
                     </xsl:call-template>
                     <xsl:call-template name="rowIpraForecast">
-                        <xsl:with-param name="functionName" select="'Самостоятельно передвигаться'"/>
-                        <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'MoveIndependentlyValue')"/>
-                    </xsl:call-template>
-                    <xsl:call-template name="rowIpraForecast">
                         <xsl:with-param name="functionName" select="'Ориентироваться'"/>
                         <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'OrientateValue')"/>
                     </xsl:call-template>
@@ -74,6 +70,10 @@
                     </xsl:call-template>
                     <xsl:call-template name="rowIpraForecast">
                         <xsl:with-param name="functionName" select="'Обучаться'"/>
+                        <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'LearningValue')"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="rowIpraForecast">
+                        <xsl:with-param name="functionName" select="'Заниматься трудовой деятельностью'"/>
                         <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'WorkValue')"/>
                     </xsl:call-template>
                 </fo:table-body>

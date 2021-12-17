@@ -12,15 +12,15 @@
             <fo:table table-layout="fixed" width="100%"  text-align="center" keep-together.within-page="always">
                 <fo:table-column column-width="25%"/>
                 <fo:table-column column-width="25%"/>
-                <fo:table-column column-width="25%"/>
-                <fo:table-column column-width="25%"/>
+                <fo:table-column column-width="15%"/>
+                <fo:table-column column-width="35%"/>
                 <fo:table-body>
                     <fo:table-row>
                         <fo:table-cell number-columns-spanned="3">
                             <fo:block><xsl:text> </xsl:text></fo:block>
                         </fo:table-cell>
                         <fo:table-cell padding="2px" border="solid blue 1px">
-                            <fo:block><fo:block>Документ подписан</fo:block><fo:block>электронной подписью</fo:block>
+                            <fo:block><fo:block>Документ подписан</fo:block><fo:block>электронной подписью.</fo:block>
                                 <fo:block>
                                     <fo:table table-layout="fixed" width="100%" text-align="left">
                                         <fo:table-column column-width="30%"/>
@@ -28,7 +28,7 @@
                                         <fo:table-body>
                                             <fo:table-row >
                                                 <fo:table-cell>
-                                                    <fo:block><xsl:text>Сертификат</xsl:text></fo:block>
+                                                    <fo:block><xsl:text>Сертификат:</xsl:text></fo:block>
                                                 </fo:table-cell>
                                                 <fo:table-cell>
                                                     <fo:block><xsl:value-of select="$CERTIFICATE"/></fo:block>
@@ -36,7 +36,7 @@
                                             </fo:table-row>
                                             <fo:table-row>
                                                 <fo:table-cell>
-                                                    <fo:block><xsl:text>Владелец</xsl:text></fo:block>
+                                                    <fo:block><xsl:text>Владелец:</xsl:text></fo:block>
                                                 </fo:table-cell>
                                                 <fo:table-cell>
                                                     <fo:block><xsl:value-of select="$PUBLISHER"/></fo:block>
@@ -44,7 +44,7 @@
                                             </fo:table-row>
                                             <fo:table-row>
                                                 <fo:table-cell>
-                                                    <fo:block><xsl:text>Действителен</xsl:text></fo:block>
+                                                    <fo:block><xsl:text>Действителен:</xsl:text></fo:block>
                                                 </fo:table-cell>
                                                 <fo:table-cell>
                                                     <fo:block>

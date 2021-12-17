@@ -13,7 +13,8 @@
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
             <fo:block margin-left="5mm">
-                <xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/>
+                Рекомендации о показанных и противопоказанных видах трудовой деятельности с учетом нарушенных функций организма
+                человека, обусловленных заболеваниями, последствиями травм и дефектами
             </fo:block>
         </fo:block>
         <xsl:variable name="needsExtraBreaks">

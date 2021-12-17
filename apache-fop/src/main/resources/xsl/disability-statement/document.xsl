@@ -19,13 +19,25 @@
                 <xsl:call-template name="ipraEvent">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.MED.EVENT']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="header" select="''"/>
                 </xsl:call-template>
             </xsl:if>
             <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.PSYCHOPED.EVENT') != ''">
+                <xsl:variable name="header">
+                    <xsl:choose>
+                        <xsl:when test="$isChild = 'true'">
+                            <fo:block margin-left="5mm">Мероприятия общему и профессиональному образованию</fo:block>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <fo:block margin-left="5mm">Мероприятия психолого-педагогической реабилитации или абилитации</fo:block>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <fo:block padding-top="5mm">
-                    <xsl:call-template name="ipraPsychopedEvent">
+                    <xsl:call-template name="ipraEvent">
                         <xsl:with-param name="friExtract"
                                         select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.PSYCHOPED.EVENT']/ancestor::fri:Запись[1]"/>
+                        <xsl:with-param name="header" select="$header"/>
                     </xsl:call-template>
                 </fo:block>
             </xsl:if>
@@ -35,6 +47,7 @@
                 <xsl:call-template name="ipraEvent">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.PROF.EVENT']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="header" select="''"/>
                 </xsl:call-template>
                 <fo:block font-size="8pt">
                     <fo:table table-layout="fixed" width="100%">
@@ -98,6 +111,7 @@
                 <xsl:call-template name="ipraEvent">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.SOCIAL.EVENT']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="header" select="''"/>
                 </xsl:call-template>
             </fo:block>
             <fo:block font-size="8pt" padding-top="3mm">
@@ -110,7 +124,7 @@
                                 <fo:block>Заключение о возможности (невозможности) осуществлять самообслуживание и вести самостоятельный образ жизни
                                 </fo:block>
                             </fo:table-cell>
-                            <fo:table-cell>
+                            <fo:table-cell padding="2px">
                                 <fo:block text-align="left">
                                     <xsl:variable name="selfServicePossibleWithHelp">
                                         <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.SOCIAL', 'SelfServicePossibleWithHelp')"/>
@@ -149,7 +163,7 @@
         </xsl:if>
         <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.PHYSIOTHERAPY.EVENT') != ''">
             <fo:block padding-top="3mm">
-                <xsl:call-template name="ipraPhysiotherapyEvent">
+                <xsl:call-template name="ipraEvent">
                     <xsl:with-param name="friExtract"
                                     select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.PHYSIOTHERAPY.EVENT']/ancestor::fri:Запись[1]"/>
                     <xsl:with-param name="header" select="'Физкультурно-оздоровительные мероприятия, мероприятия по занятию спортом'"/>
@@ -178,7 +192,7 @@
                         <fo:table-column column-width="50%"/>
                         <fo:table-body>
                             <fo:table-row>
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block>
                                         Сопровождение инвалида к месту нахождения организации, в
                                         которую выдано направление для получения ТСР за счет
@@ -186,7 +200,7 @@
                                         <!-- xsl:value-of select="fri:find-attribute-name(.//fri:Запись, 'MSE.IPRA.TSR.FEDERAL', 'NeedTransportHelpConcl')"/-->
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell>
+                                <fo:table-cell padding="2px">
                                     <fo:block text-align="left">
                                         <xsl:value-of select="$needTransportHelpConcl"/>
                                     </fo:block>
@@ -207,38 +221,6 @@
                                                 fri:invalid-type-name($isChild, 'Род'), ' либо средств других лиц или организаций независимо от организационно-правовых форм и форм собственности')"/>
                 </xsl:call-template>
             </fo:block>
-            <fo:block font-size="8pt">
-                <fo:table table-layout="fixed" width="100%">
-                    <fo:table-column column-width="50%"/>
-                    <fo:table-column column-width="50%"/>
-                    <fo:table-body>
-                        <fo:table-row>
-                            <fo:table-cell>
-                                <fo:block>
-                                    Заключение о наличии медицинский показаний для
-                                    приобретения
-                                    <xsl:value-of select="fri:invalid-type-name($isChild, 'Тв')"/> транспортного средства за счет
-                                    собственных средств
-                                    <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> либо средств других лиц или
-                                    организаций независимо от организационно-правовых форм и
-                                    форм собственности:
-                                </fo:block>
-                            </fo:table-cell>
-                            <fo:table-cell>
-                                <fo:block text-align="left">
-                                    <xsl:variable name="needCarConclusion">
-                                        <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'NeedCarConclusion')"/>
-                                    </xsl:variable>
-                                    <xsl:choose>
-                                        <xsl:when test="$needCarConclusion = 'true'">Есть</xsl:when>
-                                        <xsl:otherwise>Отсутствует</xsl:otherwise>
-                                    </xsl:choose>
-                                </fo:block>
-                            </fo:table-cell>
-                        </fo:table-row>
-                    </fo:table-body>
-                </fo:table>
-            </fo:block>
         </xsl:if>
         <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.MSK') != '' or fri:find-category(.//fri:Запись, 'MSE.IPRA.REHAB') != ''">
             <fo:block padding-top="3mm">
@@ -257,6 +239,38 @@
                     <xsl:with-param name="header" select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые
                         ', fri:invalid-type-name($isChild, 'Род'), ' за счет средств бюджета субъекта Российской Федерации')"/>
                 </xsl:call-template>
+            </fo:block>
+            <fo:block font-size="8pt">
+                <fo:table table-layout="fixed" width="100%">
+                    <fo:table-column column-width="50%"/>
+                    <fo:table-column column-width="50%"/>
+                    <fo:table-body>
+                        <fo:table-row>
+                            <fo:table-cell padding="2px">
+                                <fo:block>
+                                    Заключение о наличии медицинский показаний для
+                                    приобретения
+                                    <xsl:value-of select="fri:invalid-type-name($isChild, 'Тв')"/> транспортного средства за счет
+                                    собственных средств
+                                    <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> либо средств других лиц или
+                                    организаций независимо от организационно-правовых форм и
+                                    форм собственности:
+                                </fo:block>
+                            </fo:table-cell>
+                            <fo:table-cell padding="2px">
+                                <fo:block text-align="left">
+                                    <xsl:variable name="needCarConclusion">
+                                        <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'NeedCarConclusion')"/>
+                                    </xsl:variable>
+                                    <xsl:choose>
+                                        <xsl:when test="$needCarConclusion = 'true'">Есть</xsl:when>
+                                        <xsl:otherwise>Отсутствует</xsl:otherwise>
+                                    </xsl:choose>
+                                </fo:block>
+                            </fo:table-cell>
+                        </fo:table-row>
+                    </fo:table-body>
+                </fo:table>
             </fo:block>
         </xsl:if>
         <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.HELPITEM') != ''">

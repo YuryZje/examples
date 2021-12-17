@@ -18,19 +18,17 @@
     <xsl:import href="personal-data.xsl"/>
     <xsl:import href="document.xsl"/>
     <xsl:import href="ipra.xsl"/>
-    <xsl:import href="ipra.med.xsl"/>
+    <xsl:import href="ipra.event.xsl"/>
     <xsl:import href="ipra.non.recomm.labor.kinds.xsl"/>
     <xsl:import href="ipra.recomm.labor.conditions.xsl"/>
     <xsl:import href="ipra.prof.general.xsl"/>
     <xsl:import href="ipra.social.xsl"/>
-    <xsl:import href="ipra.physiotherapy.event.xsl"/>
     <xsl:import href="ipra.tsr.xsl"/>
     <xsl:import href="ipra.help.xsl"/>
     <xsl:import href="vch.xsl"/>
     <xsl:import href="ipra.tsr.msk.rehab.xsl"/>
     <xsl:import href="common.key.value.xsl"/>
     <xsl:import href="ipra.forecast.xsl"/>
-    <xsl:import href="ipra.psychoped.event.xsl"/>
     <xsl:import href="signature.xsl"/>
 
     <xsl:template match="fri:ВыпискаФРИ">
