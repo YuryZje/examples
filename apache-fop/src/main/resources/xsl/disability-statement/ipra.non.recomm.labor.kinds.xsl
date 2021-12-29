@@ -12,8 +12,8 @@
         <xsl:param name="friExtract"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
-            <fo:block margin-left="5mm">
-                <xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/>
+            <fo:block margin-left="5mm">Рекомендации о показанных и противопоказанных видах трудовой деятельности с учетом нарушенных функций организма человека,
+                обусловленных заболеваниями, последствиями травм и дефектами
             </fo:block>
         </fo:block>
         <fo:block font-size="6pt" padding-top="3mm">
@@ -40,16 +40,24 @@
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:variable name="attrType"><xsl:value-of select="./fri:ТипДанных"/></xsl:variable>
+                                    <xsl:variable name="attrType">
+                                        <xsl:value-of select="./fri:ТипДанных"/>
+                                    </xsl:variable>
                                     <xsl:choose>
                                         <xsl:when test="$attrType != 'NUMBER'">
                                             <xsl:value-of select="./fri:Значение"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:variable name="attrValue"><xsl:value-of select="./fri:Значение"/></xsl:variable>
+                                            <xsl:variable name="attrValue">
+                                                <xsl:value-of select="./fri:Значение"/>
+                                            </xsl:variable>
                                             <xsl:choose>
-                                                <xsl:when test="$attrValue = '1'"><xsl:text>Присутствует нарушение функции организма</xsl:text></xsl:when>
-                                                <xsl:when test="$attrValue = '0'"><xsl:text>Отсутствует нарушение функции организма</xsl:text></xsl:when>
+                                                <xsl:when test="$attrValue = '1'">
+                                                    <xsl:text>Присутствует нарушение функции организма</xsl:text>
+                                                </xsl:when>
+                                                <xsl:when test="$attrValue = '0'">
+                                                    <xsl:text>Отсутствует нарушение функции организма</xsl:text>
+                                                </xsl:when>
                                             </xsl:choose>
                                         </xsl:otherwise>
                                     </xsl:choose>

@@ -52,13 +52,12 @@
         </xsl:for-each>
     </xsl:template>
 
-    <xsl:template name="ipraTsrMskRehab">
-        <xsl:param name="friExtractTsr"/>
-        <xsl:param name="friExtractRehab"/>
+    <xsl:template name="ipraTsrMsk">
+        <xsl:param name="friExtract"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
             <fo:block margin-left="5mm">
-                <xsl:value-of select="$friExtractTsr[1]/fri:Категория/fri:Наименование"/>
+                <xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/>
             </fo:block>
         </fo:block>
         <fo:block font-size="6pt" padding-top="3mm">
@@ -84,14 +83,9 @@
                     </fo:table-row>
                 </fo:table-header>
                 <fo:table-body>
-                    <xsl:if test="$friExtractTsr !=''">
+                    <xsl:if test="$friExtract != ''">
                         <xsl:call-template name="showTsrRow">
-                            <xsl:with-param name="node" select="$friExtractTsr"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <xsl:if test="$friExtractRehab !=''">
-                        <xsl:call-template name="showTsrRow">
-                            <xsl:with-param name="node" select="$friExtractRehab"/>
+                            <xsl:with-param name="node" select="$friExtract"/>
                         </xsl:call-template>
                     </xsl:if>
                 </fo:table-body>

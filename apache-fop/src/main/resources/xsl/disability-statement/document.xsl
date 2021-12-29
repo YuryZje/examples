@@ -197,7 +197,6 @@
                                         Сопровождение инвалида к месту нахождения организации, в
                                         которую выдано направление для получения ТСР за счет
                                         средств федерального бюджета, и обратно:
-                                        <!-- xsl:value-of select="fri:find-attribute-name(.//fri:Запись, 'MSE.IPRA.TSR.FEDERAL', 'NeedTransportHelpConcl')"/-->
                                     </fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell padding="2px">
@@ -221,25 +220,6 @@
                                                 fri:invalid-type-name($isChild, 'Род'), ' либо средств других лиц или организаций независимо от организационно-правовых форм и форм собственности')"/>
                 </xsl:call-template>
             </fo:block>
-        </xsl:if>
-        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.MSK') != '' or fri:find-category(.//fri:Запись, 'MSE.IPRA.REHAB') != ''">
-            <fo:block padding-top="3mm">
-                <xsl:call-template name="ipraTsrMskRehab">
-                    <xsl:with-param name="friExtractTsr"
-                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.TSR.MSK']/ancestor::fri:Запись[1]"/>
-                    <xsl:with-param name="friExtractRehab"
-                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.REHAB']/ancestor::fri:Запись[1]"/>
-                </xsl:call-template>
-            </fo:block>
-        </xsl:if>
-        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.REGIONAL.ITEM') != ''">
-            <fo:block padding-top="3mm">
-                <xsl:call-template name="ipraTsr">
-                    <xsl:with-param name="friExtract" select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.TSR.REGIONAL.ITEM']/ancestor::fri:Запись[1]"/>
-                    <xsl:with-param name="header" select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые
-                        ', fri:invalid-type-name($isChild, 'Род'), ' за счет средств бюджета субъекта Российской Федерации')"/>
-                </xsl:call-template>
-            </fo:block>
             <fo:block font-size="8pt">
                 <fo:table table-layout="fixed" width="100%">
                     <fo:table-column column-width="50%"/>
@@ -248,7 +228,7 @@
                         <fo:table-row>
                             <fo:table-cell padding="2px">
                                 <fo:block>
-                                    Заключение о наличии медицинский показаний для
+                                    Заключение о наличии медицинских показаний для
                                     приобретения
                                     <xsl:value-of select="fri:invalid-type-name($isChild, 'Тв')"/> транспортного средства за счет
                                     собственных средств
@@ -271,6 +251,30 @@
                         </fo:table-row>
                     </fo:table-body>
                 </fo:table>
+            </fo:block>
+        </xsl:if>
+        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.MSK') != ''">
+            <fo:block padding-top="3mm">
+                <xsl:call-template name="ipraTsrMsk">
+                    <xsl:with-param name="friExtract"
+                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.TSR.MSK']/ancestor::fri:Запись[1]"/>
+                </xsl:call-template>
+            </fo:block>
+        </xsl:if>
+        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.TSR.REGIONAL.ITEM') != ''">
+            <fo:block padding-top="3mm">
+                <xsl:call-template name="ipraTsr">
+                    <xsl:with-param name="friExtract" select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.TSR.REGIONAL.ITEM']/ancestor::fri:Запись[1]"/>
+                    <xsl:with-param name="header" select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые
+                        ', fri:invalid-type-name($isChild, 'Д'), ' за счет средств бюджета субъекта Российской Федерации')"/>
+                </xsl:call-template>
+            </fo:block>
+        </xsl:if>
+        <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.REHAB') != ''">
+            <fo:block padding-top="3mm">
+                <xsl:call-template name="ipraEvent">
+                    <xsl:with-param name="friExtract" select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'MSE.IPRA.REHAB']/ancestor::fri:Запись[1]"/>
+                </xsl:call-template>
             </fo:block>
         </xsl:if>
         <xsl:if test="fri:find-category(.//fri:Запись, 'MSE.IPRA.HELPITEM') != ''">
@@ -330,10 +334,10 @@
                                 <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>Номер и дата протокола проведения медико-социальной экспертизы:</fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell padding="2px"  border="solid black 1px" text-align="left">
+                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                     <fo:block>
-                                        <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'ProtocolNum')"/>
-                                        <xsl:value-of select="fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'ProtocolDate')"/>
+                                        <xsl:value-of
+                                                select="concat(fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'ProtocolNum'), ', ', fri:format-date(fri:find-attribute-value(.//fri:Запись, 'MSE.IPRA.GENERAL', 'ProtocolDate')))"/>
                                     </fo:block>
                                 </fo:table-cell>
                             </fo:table-row>
