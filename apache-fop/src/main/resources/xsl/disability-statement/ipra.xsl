@@ -213,6 +213,32 @@
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
+                        <xsl:variable name="needCarConclusion">
+                            <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'NeedCarConclusion')"/>
+                        </xsl:variable>
+                        <xsl:if test="$needCarConclusion != ''">
+                            <fo:table-row>
+                                <fo:table-cell padding="2px">
+                                    <fo:block>
+                                        Заключение о наличии медицинских показаний для
+                                        приобретения
+                                        <xsl:value-of select="fri:invalid-type-name($isChild, 'Тв')"/> транспортного средства за счет
+                                        собственных средств
+                                        <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> либо средств других лиц или
+                                        организаций независимо от организационно-правовых форм и
+                                        форм собственности:
+                                    </fo:block>
+                                </fo:table-cell>
+                                <fo:table-cell padding="2px">
+                                    <fo:block text-align="left">
+                                        <xsl:choose>
+                                            <xsl:when test="$needCarConclusion = 'true'">Есть</xsl:when>
+                                            <xsl:otherwise>Отсутствует</xsl:otherwise>
+                                        </xsl:choose>
+                                    </fo:block>
+                                </fo:table-cell>
+                            </fo:table-row>
+                        </xsl:if>
                     </fo:table-body>
                 </fo:table>
             </fo:block>

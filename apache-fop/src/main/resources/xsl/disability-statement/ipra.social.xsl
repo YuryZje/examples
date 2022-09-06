@@ -30,6 +30,9 @@
         <xsl:variable name="needHouseToolsForOtherDeseases">
             <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'NeedHouseToolsForOtherDeseases')"/>
         </xsl:variable>
+        <xsl:variable name="houseFacilitiesRecommendations">
+            <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'HouseFacilitiesRecommendations')"/>
+        </xsl:variable>
 
         <fo:block font-size="6pt" padding-top="3mm">
             <fo:table table-layout="fixed" width="100%" text-align="center">
@@ -58,6 +61,12 @@
                         <xsl:with-param name="attrType" select="fri:find-local-attribute-type($friExtract, 'NeedHouseToolsForOtherDeseases')"/>
                         <xsl:with-param name="caption" select="'Для инвалидов, имеющих нарушения здоровья со стойким расстройством иных функций'"/>
                     </xsl:call-template>
+                    <xsl:call-template name="show-attribute-row">
+                        <xsl:with-param name="attribute" select="$houseFacilitiesRecommendations"/>
+                        <xsl:with-param name="attrType" select="fri:find-local-attribute-type($friExtract, 'HouseFacilitiesRecommendations')"/>
+                        <xsl:with-param name="caption" select="'Рекомендации по оборудованию специальными средствами и приспособлениями жилого помещения, занимаемого инвалидом'"/>
+                    </xsl:call-template>
+                    <fo:table-row><fo:table-cell><fo:block/></fo:table-cell></fo:table-row>
                 </fo:table-body>
             </fo:table>
         </fo:block>

@@ -12,8 +12,8 @@
             <fo:table table-layout="fixed" width="100%"  text-align="center" keep-together.within-page="always">
                 <fo:table-column column-width="25%"/>
                 <fo:table-column column-width="25%"/>
-                <fo:table-column column-width="15%"/>
-                <fo:table-column column-width="35%"/>
+                <fo:table-column column-width="20%"/>
+                <fo:table-column column-width="30%"/>
                 <fo:table-body>
                     <fo:table-row>
                         <fo:table-cell number-columns-spanned="3">

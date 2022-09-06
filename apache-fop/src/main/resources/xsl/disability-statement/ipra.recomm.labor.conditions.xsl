@@ -27,12 +27,41 @@
             <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'WithAssistanceFromOthers')"/>
         </xsl:variable>
 
+        <xsl:variable name="needsExtraBreaksValue">
+            <xsl:choose>
+                <xsl:when test="$needsExtraBreaks = 'true'">Нуждается</xsl:when>
+                <xsl:when test="$needsExtraBreaks = 'false'">Не нуждается</xsl:when>
+                <xsl:otherwise></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="anyEnvirButWithDifficultiesValue">
+            <xsl:choose>
+                <xsl:when test="$anyEnvirButWithDifficulties = 'true'">Доступны</xsl:when>
+                <xsl:when test="$anyEnvirButWithDifficulties = 'false'">Недоступны</xsl:when>
+                <xsl:otherwise></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="optimalWorkingConditionsValue">
+            <xsl:choose>
+                <xsl:when test="$optimalWorkingConditions = 'true'">Доступны</xsl:when>
+                <xsl:when test="$optimalWorkingConditions = 'false'">Недоступны</xsl:when>
+                <xsl:otherwise></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="withAssistanceFromOthersValue">
+            <xsl:choose>
+                <xsl:when test="$withAssistanceFromOthers = 'true'">Возможна</xsl:when>
+                <xsl:when test="$withAssistanceFromOthers = 'false'">Невозможна</xsl:when>
+                <xsl:otherwise></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
         <fo:block font-size="6pt" padding-top="3mm">
             <fo:table table-layout="fixed" width="100%" text-align="center">
                 <fo:table-column column-width="50%"/>
                 <fo:table-column column-width="50%"/>
                 <fo:table-body>
-                    <xsl:if test="$needsExtraBreaks = 'true'">
+                    <xsl:if test="$needsExtraBreaksValue != ''">
                         <fo:table-row>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
@@ -41,12 +70,12 @@
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:text>Нуждается</xsl:text>
+                                    <xsl:value-of select="$needsExtraBreaksValue"/>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
                     </xsl:if>
-                    <xsl:if test="$optimalWorkingConditions = 'true'">
+                    <xsl:if test="$optimalWorkingConditionsValue != ''">
                         <fo:table-row>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
@@ -55,12 +84,12 @@
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:text>Доступны</xsl:text>
+                                    <xsl:value-of select="$optimalWorkingConditionsValue"/>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
                     </xsl:if>
-                    <xsl:if test="$anyEnvirButWithDifficulties = 'true'">
+                    <xsl:if test="$anyEnvirButWithDifficultiesValue != ''">
                         <fo:table-row>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
@@ -69,12 +98,12 @@
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:text>Доступны</xsl:text>
+                                    <xsl:value-of select="$anyEnvirButWithDifficultiesValue"/>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
                     </xsl:if>
-                    <xsl:if test="$withAssistanceFromOthers = 'true'">
+                    <xsl:if test="$withAssistanceFromOthersValue != ''">
                         <fo:table-row>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
@@ -83,7 +112,7 @@
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:text>Возможна</xsl:text>
+                                    <xsl:value-of select="$withAssistanceFromOthersValue"/>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
