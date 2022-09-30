@@ -26,7 +26,7 @@ public class PdfGeneratorController {
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
-            Map<String, String> parameters = new HashMap<>();
+            Map<String, Object> parameters = new HashMap<>();
             pdfGenerator.createPdfFile(
                 new ClassPathResource("data/disability-statement.xml").getInputStream(),
                 new ClassPathResource("xsl/disability-statement/disability-statement.xsl").getInputStream(),

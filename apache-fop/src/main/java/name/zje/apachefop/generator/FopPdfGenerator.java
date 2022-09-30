@@ -35,12 +35,13 @@ public class FopPdfGenerator implements PdfGenerator {
     private static final String FOP_CONFIG_FILE = "/fop-config/fop-config.xml";
     private static final String FOP_BASE_DIR = FopPdfGenerator.class.getResource("/").getFile();
 
-    public void createPdfFile(String xmlDataFile, String templateFile, OutputStream pdfOutputStream, Map<String, String> parameters) throws IOException, SAXException, TransformerException, ConfigurationException {
+    public void createPdfFile(String xmlDataFile, String templateFile, OutputStream pdfOutputStream, Map<String, Object> parameters)
+        throws IOException, SAXException, TransformerException, ConfigurationException {
         createPdfFile(new FileInputStream(xmlDataFile), new FileInputStream(templateFile), pdfOutputStream, parameters);
     }
 
     public void createPdfFile(InputStream xmlDataFile, InputStream templateFile, OutputStream pdfOutputStream,
-                              Map<String, String> parameters) throws SAXException, TransformerException, ConfigurationException {
+                              Map<String, Object> parameters) throws SAXException, TransformerException, ConfigurationException {
         log.info("Create pdf file ...");
         log.info("Fop base dir: " + FOP_BASE_DIR);
 

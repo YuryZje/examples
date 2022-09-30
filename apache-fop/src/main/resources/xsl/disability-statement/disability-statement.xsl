@@ -16,19 +16,25 @@
     <xsl:import href="function.xsl"/>
     <xsl:import href="templates.xsl"/>
     <xsl:import href="personal-data.xsl"/>
-    <xsl:import href="document.xsl"/>
-    <xsl:import href="ipra.xsl"/>
-    <xsl:import href="ipra.event.xsl"/>
-    <xsl:import href="ipra.non.recomm.labor.kinds.xsl"/>
-    <xsl:import href="ipra.recomm.labor.conditions.xsl"/>
-    <xsl:import href="ipra.prof.general.xsl"/>
-    <xsl:import href="ipra.social.xsl"/>
-    <xsl:import href="ipra.tsr.xsl"/>
-    <xsl:import href="ipra.help.xsl"/>
+    <xsl:import href="ipra/ipra.xsl"/>
+    <xsl:import href="ipra/ipra.main.xsl"/>
+    <xsl:import href="ipra/ipra.event.xsl"/>
+    <xsl:import href="ipra/ipra.non.recomm.labor.kinds.xsl"/>
+    <xsl:import href="ipra/ipra.recomm.labor.conditions.xsl"/>
+    <xsl:import href="ipra/ipra.prof.general.xsl"/>
+    <xsl:import href="ipra/ipra.social.xsl"/>
+    <xsl:import href="ipra/ipra.tsr.xsl"/>
+    <xsl:import href="ipra/ipra.help.xsl"/>
     <xsl:import href="vch.xsl"/>
-    <xsl:import href="ipra.tsr.msk.xsl"/>
+    <xsl:import href="ipra/ipra.tsr.msk.xsl"/>
     <xsl:import href="common.key.value.xsl"/>
-    <xsl:import href="ipra.forecast.xsl"/>
+    <xsl:import href="ipra/ipra.forecast.xsl"/>
+    <xsl:import href="pfrsum/pfr.payment.xsl"/>
+    <xsl:import href="pfrsum/pfr.help.xsl"/>
+    <xsl:import href="pfrsum/pfrsum.xsl"/>
+    <xsl:import href="edu/edu.xsl"/>
+    <xsl:import href="edu/edu.prof.xsl"/>
+    <xsl:import href="edu/edu.high.xsl"/>
     <xsl:import href="signature.xsl"/>
 
     <xsl:template match="fri:ВыпискаФРИ">
@@ -52,16 +58,50 @@
                         <fo:block font-size="16pt">ФЕДЕРАЛЬНЫЙ РЕЕСТР ИНВАЛИДОВ</fo:block>
                     </fo:block>
                     <xsl:apply-templates select="//fri:ПерсональныеДанные"/>
-                    <xsl:apply-templates select="//fri:Документ[fri:find-category(.//fri:Запись, 'MSE.IPRA.GENERAL') != '']">
-                        <xsl:with-param name="isChild">
-                            <xsl:value-of select="$isChild"/>
-                        </xsl:with-param>
-                    </xsl:apply-templates>
-                    <xsl:apply-templates select="//fri:Документ[fri:find-category(.//fri:Запись, 'MSE.IPRA.GENERAL') = '']">
-                        <xsl:with-param name="isChild">
-                            <xsl:value-of select="$isChild"/>
-                        </xsl:with-param>
-                    </xsl:apply-templates>
+
+
+                    <xsl:variable name="isIpr">
+                        <xsl:value-of select="fri:find-document-by-code(fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код, 'IPR')"/>
+                    </xsl:variable>
+                    <xsl:variable name="isIpra">
+                        <xsl:value-of select="fri:find-document-by-code(fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код, 'IPRA')"/>
+                    </xsl:variable>
+                    <xsl:variable name="isIprarch">
+                        <xsl:value-of select="fri:find-document-by-code(fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код, 'IPRARCH')"/>
+                    </xsl:variable>
+
+                    <xsl:choose>
+                        <xsl:when test="$isIpra != ''">
+                            <xsl:call-template name="documentIpra">
+                                <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='IPRA']/../../../fri:ВсеСведения"/>
+                                <xsl:with-param name="documentCode" select="'IPRA'"/>
+                                <xsl:with-param name="isChild" select="$isChild"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:when test="$isIpr != ''">
+                            <xsl:call-template name="documentIpra">
+                                <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='IPR']/../../../fri:ВсеСведения"/>
+                                <xsl:with-param name="documentCode" select="'IPR'"/>
+                                <xsl:with-param name="isChild" select="$isChild"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:when test="$isIprarch != ''">
+                            <xsl:call-template name="documentIpra">
+                                <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='IPRARCH']/../../../fri:ВсеСведения"/>
+                                <xsl:with-param name="documentCode" select="'IPR'"/>
+                                <xsl:with-param name="isChild" select="$isChild"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                    </xsl:choose>
+
+                    <xsl:call-template name="documentPfrsum">
+                        <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='PFRSUM']/../../../fri:ВсеСведения"/>
+                    </xsl:call-template>
+
+                    <xsl:call-template name="documentEdu">
+                        <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='EDU']/../../../fri:ВсеСведения"/>
+                        <xsl:with-param name="isChild" select="$isChild"/>
+                    </xsl:call-template>
 
                     <xsl:variable name="vhcExtract">
                         <xsl:copy-of select="fri:ВсеДокументы/fri:Документ/fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'VHC.VEHICLE']/ancestor::fri:Запись[1]"/>

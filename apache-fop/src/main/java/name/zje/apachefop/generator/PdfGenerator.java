@@ -28,6 +28,6 @@ import java.util.Map;
  */
 public interface PdfGenerator {
 
-    void createPdfFile(String xmlDataFile, String templateFile, OutputStream pdfOutputStream, Map<String, String> parameters) throws Exception;
+    void createPdfFile(String xmlDataFile, String templateFile, OutputStream pdfOutputStream, Map<String, Object> parameters) throws Exception;
 
 }

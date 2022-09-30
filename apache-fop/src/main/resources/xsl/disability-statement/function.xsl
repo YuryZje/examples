@@ -58,6 +58,20 @@
         <xsl:value-of select="$value"/>
     </xsl:function>
 
+    <xsl:function name="fri:find-document-by-code">
+        <xsl:param name="documents"/>
+        <xsl:param name="code"/>
+
+        <xsl:variable name="value">
+            <xsl:for-each select="$documents">
+                <xsl:if test="./text() = $code">
+                    <xsl:value-of select="./text()"/>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:value-of select="$value"/>
+    </xsl:function>
+
     <xsl:function name="fri:find-local-attribute-value">
         <xsl:param name="node"/>
         <xsl:param name="attribute"/>
