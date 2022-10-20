@@ -24,7 +24,6 @@
                 <xsl:call-template name="pfrHelp">
                     <xsl:with-param name="friExtract"
                                     select="$friDocument/fri:Запись/fri:Категория/fri:Код[text() = 'PFR.GSHELP_THIS_YEAR']/ancestor::fri:Запись[1]"/>
-                    <xsl:with-param name="year" select="year-from-date(current-date())"/>
                     <xsl:with-param name="future" select="'false'"/>
                 </xsl:call-template>
             </fo:block>
@@ -33,23 +32,11 @@
             <fo:block padding-top="3mm">
                 <xsl:call-template name="pfrHelp">
                     <xsl:with-param name="friExtract"
-                                    select="$friDocument/fri:Запись/fri:Категория/fri:Код[text() = 'PFR.GSHELP_THIS_YEAR']/ancestor::fri:Запись[1]"/>
-                    <xsl:with-param name="year" select="year-from-date(current-date()) + 1"/>
+                                    select="$friDocument/fri:Запись/fri:Категория/fri:Код[text() = 'PFR.GSHELP_NEXT_YEAR']/ancestor::fri:Запись[1]"/>
                     <xsl:with-param name="future" select="'true'"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
-        <xsl:if test="fri:find-category($friDocument/fri:Запись, 'PFR.GSHELP_NEXT_YEAR') != ''">
-            <fo:block padding-top="3mm">
-                <xsl:call-template name="pfrHelp">
-                    <xsl:with-param name="friExtract"
-                                    select="$friDocument/fri:Запись/fri:Категория/fri:Код[text() = 'PFR.GSHELP_THIS_YEAR']/ancestor::fri:Запись[1]"/>
-                    <xsl:with-param name="year" select="year-from-date(current-date()) + 1"/>
-                    <xsl:with-param name="future" select="'true'"/>
-                </xsl:call-template>
-            </fo:block>
-        </xsl:if>
-
     </xsl:template>
 
 </xsl:stylesheet>

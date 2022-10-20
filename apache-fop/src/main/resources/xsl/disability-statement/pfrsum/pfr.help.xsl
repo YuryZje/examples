@@ -40,58 +40,59 @@
 
     <xsl:template name="pfrHelp">
         <xsl:param name="friExtract"/>
-        <xsl:param name="year"/>
         <xsl:param name="future"/>
 
-        <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
-            <fo:block margin-left="5mm">Получение (отказ) набора социальных услуг в <xsl:value-of select="$year"/> году</fo:block>
-        </fo:block>
-        <fo:block font-size="6pt" padding-top="5mm">
-            <fo:table table-layout="fixed" width="100%" text-align="center">
-                <fo:table-column column-width="50%"/>
-                <fo:table-column column-width="50%"/>
-                <fo:table-body>
-                    <xsl:for-each select="$friExtract">
-                        <fo:table-row  border-bottom="solid black 1px">
-                            <fo:table-cell padding="2px" text-align="left">
-                                <fo:block>
-                                    Обеспечение в соответствии со стандартами медицинской помощи необходимыми лекарственными препаратами для медицинского применения по рецептам на лекарственные препараты, медицинскими изделиями по рецептам на медицинские изделия, а также специализированными продуктами лечебного питания для детей-инвалидов
-                                </fo:block>
-                            </fo:table-cell>
-                            <fo:table-cell padding="2px" text-align="center">
-                                <fo:block>
-                                    <xsl:value-of select="fri:nsu-text-value(fri:find-local-attribute-value(., 'NSU1'), $future)"/>
-                                </fo:block>
-                            </fo:table-cell>
-                        </fo:table-row>
-                        <fo:table-row  border-bottom="solid black 1px">
-                            <fo:table-cell padding="2px" text-align="left">
-                                <fo:block>
-                                    Предоставление при наличии медицинских показаний путевки на санаторно-курортное лечение, осуществляемое в целях профилактики основных заболеваний, в санаторно-курортные организации, определенные в соответствии с законодательством Российской Федерации о контрактной системе в сфере закупок товаров, работ, услуг для обеспечения государственных и муниципальных нужд
-                                </fo:block>
-                            </fo:table-cell>
-                            <fo:table-cell padding="2px" text-align="center">
-                                <fo:block>
-                                    <xsl:value-of select="fri:nsu-text-value(fri:find-local-attribute-value(., 'NSU2'), $future)"/>
-                                </fo:block>
-                            </fo:table-cell>
-                        </fo:table-row>
-                        <fo:table-row  border-bottom="solid black 1px">
-                            <fo:table-cell padding="2px" text-align="left">
-                                <fo:block>
-                                    Бесплатный проезд на пригородном железнодорожном транспорте, а также на междугородном транспорте к месту лечения и обратно
-                                </fo:block>
-                            </fo:table-cell>
-                            <fo:table-cell padding="2px" text-align="center">
-                                <fo:block>
-                                    <xsl:value-of select="fri:nsu-text-value(fri:find-local-attribute-value(., 'NSU3'), $future)"/>
-                                </fo:block>
-                            </fo:table-cell>
-                        </fo:table-row>
-                    </xsl:for-each>
-                </fo:table-body>
-            </fo:table>
-        </fo:block>
+        <xsl:for-each select="$friExtract">
+            <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
+                <fo:block margin-left="5mm">Получение (отказ) набора социальных услуг в <xsl:value-of select="fri:find-local-attribute-value(., 'NSUYear')"/> году</fo:block>
+            </fo:block>
+            <fo:block font-size="6pt" padding-top="5mm">
+                <fo:table table-layout="fixed" width="100%" text-align="center">
+                    <fo:table-column column-width="50%"/>
+                    <fo:table-column column-width="50%"/>
+                    <fo:table-body>
+
+                            <fo:table-row  border-bottom="solid black 1px">
+                                <fo:table-cell padding="2px" text-align="left">
+                                    <fo:block>
+                                        Обеспечение в соответствии со стандартами медицинской помощи необходимыми лекарственными препаратами для медицинского применения по рецептам на лекарственные препараты, медицинскими изделиями по рецептам на медицинские изделия, а также специализированными продуктами лечебного питания для детей-инвалидов
+                                    </fo:block>
+                                </fo:table-cell>
+                                <fo:table-cell padding="2px" text-align="center">
+                                    <fo:block>
+                                        <xsl:value-of select="fri:nsu-text-value(fri:find-local-attribute-value(., 'NSU1'), $future)"/>
+                                    </fo:block>
+                                </fo:table-cell>
+                            </fo:table-row>
+                            <fo:table-row  border-bottom="solid black 1px">
+                                <fo:table-cell padding="2px" text-align="left">
+                                    <fo:block>
+                                        Предоставление при наличии медицинских показаний путевки на санаторно-курортное лечение, осуществляемое в целях профилактики основных заболеваний, в санаторно-курортные организации, определенные в соответствии с законодательством Российской Федерации о контрактной системе в сфере закупок товаров, работ, услуг для обеспечения государственных и муниципальных нужд
+                                    </fo:block>
+                                </fo:table-cell>
+                                <fo:table-cell padding="2px" text-align="center">
+                                    <fo:block>
+                                        <xsl:value-of select="fri:nsu-text-value(fri:find-local-attribute-value(., 'NSU2'), $future)"/>
+                                    </fo:block>
+                                </fo:table-cell>
+                            </fo:table-row>
+                            <fo:table-row  border-bottom="solid black 1px">
+                                <fo:table-cell padding="2px" text-align="left">
+                                    <fo:block>
+                                        Бесплатный проезд на пригородном железнодорожном транспорте, а также на междугородном транспорте к месту лечения и обратно
+                                    </fo:block>
+                                </fo:table-cell>
+                                <fo:table-cell padding="2px" text-align="center">
+                                    <fo:block>
+                                        <xsl:value-of select="fri:nsu-text-value(fri:find-local-attribute-value(., 'NSU3'), $future)"/>
+                                    </fo:block>
+                                </fo:table-cell>
+                            </fo:table-row>
+
+                    </fo:table-body>
+                </fo:table>
+            </fo:block>
+        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>

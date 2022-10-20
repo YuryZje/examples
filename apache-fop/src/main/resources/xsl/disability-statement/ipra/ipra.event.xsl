@@ -7,9 +7,9 @@
 
     <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes"/>
 
-
     <xsl:template name="ipraEvent">
         <xsl:param name="friExtract"/>
+        <xsl:param name="documentCode"/>
         <xsl:param name="header"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
@@ -57,8 +57,13 @@
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:choose>
-                                        <xsl:when test="fri:find-local-attribute-value(., 'IsNeeded') = 'true'">Нуждается</xsl:when>
-                                        <xsl:otherwise>Не нуждается</xsl:otherwise>
+                                        <xsl:when test="$documentCode = 'IPRA'">
+                                            <xsl:choose>
+                                                <xsl:when test="fri:find-local-attribute-value(., 'IsNeeded') = 'true'">Нуждается</xsl:when>
+                                                <xsl:otherwise>Не нуждается</xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:when>
+                                        <xsl:otherwise>Нуждается</xsl:otherwise>
                                     </xsl:choose>
                                 </fo:block>
                             </fo:table-cell>

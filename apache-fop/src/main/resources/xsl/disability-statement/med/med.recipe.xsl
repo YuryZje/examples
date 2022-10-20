@@ -7,7 +7,7 @@
 
     <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes"/>
 
-    <xsl:template name="eduHigh">
+    <xsl:template name="medRecipe">
         <xsl:param name="friExtract"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
@@ -25,28 +25,32 @@
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block></fo:block>
                                 <xsl:call-template name="show-attribute-in-table">
-                                    <xsl:with-param name="name" select="'Наименование типа выданного документа об образовании по НСИ ФРИ:'"/>
-                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'EduDocTypeNameCLS')"/>
+                                    <xsl:with-param name="name" select="'Код заболевания:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'IllnessCode')"/>
                                 </xsl:call-template>
                                 <xsl:call-template name="show-attribute-in-table">
-                                    <xsl:with-param name="name" select="'Серия выданного документа об образовании:'"/>
-                                    <xsl:with-param name="value" select="fri:find-twin-value(., 'EduDocSeries', 'EduDocSerial')"/>
+                                    <xsl:with-param name="name" select="'Название заболевания:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'IllnessName')"/>
                                 </xsl:call-template>
                                 <xsl:call-template name="show-attribute-in-table">
-                                    <xsl:with-param name="name" select="'Номер выданного документа об образовании:'"/>
-                                    <xsl:with-param name="value" select="fri:find-twin-value(., 'EduDocNumeral', 'EduDocNumber')"/>
+                                    <xsl:with-param name="name" select="'Код по МКБ-10:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'CodeMKB')"/>
                                 </xsl:call-template>
                                 <xsl:call-template name="show-attribute-in-table">
-                                    <xsl:with-param name="name" select="'Дата выдачи документа об образовании:'"/>
-                                    <xsl:with-param name="value" select="fri:format-date(fri:find-local-attribute-value(., 'EduDocIssueDate'))"/>
+                                    <xsl:with-param name="name" select="'Группа лекарственного средства:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'DrugGroup')"/>
                                 </xsl:call-template>
                                 <xsl:call-template name="show-attribute-in-table">
-                                    <xsl:with-param name="name" select="'Наименование организации, выдавшей документ об образовании:'"/>
-                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'EduDocIssuer')"/>
+                                    <xsl:with-param name="name" select="'Наименование лекарственного средства:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'DrugName')"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="show-boolean-in-table">
+                                    <xsl:with-param name="name" select="'Лекарственное средство выдано:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'IsDrugIssued')"/>
                                 </xsl:call-template>
                                 <xsl:call-template name="show-attribute-in-table">
-                                    <xsl:with-param name="name" select="'Профессия рабочего, должность служащего:'"/>
-                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'ProfessionName')"/>
+                                    <xsl:with-param name="name" select="'Дата выдачи лекарства:'"/>
+                                    <xsl:with-param name="value" select="fri:format-date(fri:find-local-attribute-value(., 'DrugIssueDate'))"/>
                                 </xsl:call-template>
                             </fo:table-cell>
                         </fo:table-row>

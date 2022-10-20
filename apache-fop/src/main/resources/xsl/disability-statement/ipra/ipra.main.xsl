@@ -9,15 +9,27 @@
 
     <xsl:template name="ipraMain">
         <xsl:param name="friExtract"/>
+        <xsl:param name="documentName"/>
         <xsl:param name="isChild"/>
-        <xsl:variable name="ipraNumber">
+
+        <xsl:variable name="ipraNumberIpra">
             <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'Number')"/>
+        </xsl:variable>
+        <xsl:variable name="ipraNumber">
+            <xsl:choose>
+                <xsl:when test="$ipraNumberIpra = ''">
+                    <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'CardNumber')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$ipraNumberIpra"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
         <xsl:variable name="ipraDate">
             <xsl:value-of select="fri:format-date(fri:find-local-attribute-value($friExtract, 'IssueDate'))"/>
         </xsl:variable>
         <fo:block font-size="14pt" padding-top="5mm" padding-bottom="10mm" text-align="center">
-            Мероприятия, назначенные в ИПРА/ПРП
+            Мероприятия, назначенные в<xsl:text> </xsl:text><xsl:value-of select="$documentName"/>
             <fo:block>
                 <xsl:value-of select="concat('№', $ipraNumber, ' от ', $ipraDate)"/>
             </fo:block>
@@ -29,8 +41,7 @@
                         <fo:table-row border-bottom="solid black 1px">
                             <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
-                                    Номер индивидуальной программы реабилитации или
-                                    абилитации <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/>:
+                                    Номер<xsl:text> </xsl:text><xsl:value-of select="$documentName"/><xsl:text> </xsl:text><xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/>:
                                 </fo:block>
                             </fo:table-cell>
                             <fo:table-cell padding="2px">
@@ -94,7 +105,7 @@
                         <fo:table-row border-bottom="solid black 1px">
                             <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
-                                    ИПРА <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> разработана:
+                                    <xsl:value-of select="$documentName"/><xsl:text> </xsl:text><xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> разработана:
                                 </fo:block>
                             </fo:table-cell>
                             <fo:table-cell padding="2px">
@@ -117,7 +128,7 @@
                                         <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'EndDateDescr')"/>
                                     </xsl:variable>
                                     <xsl:if test="$endDateDescr != ''">
-                                        <xsl:value-of select="$endDateDescr"/>
+                                        <xsl:text> </xsl:text><xsl:value-of select="$endDateDescr"/>
                                     </xsl:if>
                                 </fo:block>
                             </fo:table-cell>
@@ -129,8 +140,7 @@
                             <fo:table-row border-bottom="solid black 1px">
                                 <fo:table-cell padding="2px">
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
-                                        ИПРА
-                                        <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> разрабатывалась при очном, заочном
+                                        <xsl:value-of select="$documentName"/><xsl:text> </xsl:text><xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/> разрабатывалась при очном, заочном
                                         проведении медико-социальной экспертизы:
                                     </fo:block>
                                 </fo:table-cell>
@@ -191,7 +201,7 @@
                             <fo:table-row border-bottom="solid black 1px">
                                 <fo:table-cell>
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
-                                        Дата вынесения решения по ИПРА <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/>:
+                                        Дата вынесения решения по <xsl:value-of select="$documentName"/><xsl:text> </xsl:text><xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/>:
                                     </fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell>
@@ -204,7 +214,7 @@
                         <fo:table-row border-bottom="solid black 1px">
                             <fo:table-cell>
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
-                                    Дата выдачи ИПРА <xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/>:
+                                    Дата выдачи <xsl:value-of select="$documentName"/><xsl:text> </xsl:text><xsl:value-of select="fri:invalid-type-name($isChild, 'Род')"/>:
                                 </fo:block>
                             </fo:table-cell>
                             <fo:table-cell>
@@ -243,14 +253,6 @@
                 </fo:table>
             </fo:block>
         </fo:block>
-       <!-- <xsl:if test="fri:find-category(.//fri:Запись, 'VHC.VEHICLE') != ''">
-            <fo:block padding-top="3mm">
-                <xsl:call-template name="ipraVHC">
-                    <xsl:with-param name="friExtract"
-                                    select="fri:ВсеСведения/fri:Запись/fri:Категория/fri:Код[text() = 'VHC.VEHICLE']/ancestor::fri:Запись[1]"/>
-                </xsl:call-template>
-            </fo:block>
-        </xsl:if>-->
     </xsl:template>
 
 </xsl:stylesheet>

@@ -36,7 +36,7 @@
                         <fo:table-row border-bottom="solid black 1px">
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
-                                    <xsl:value-of select="fri:find-local-attribute-value(., 'PaymentTypeCLS')"/> c  <xsl:value-of select="fri:find-local-attribute-value(., 'From')"/>
+                                    <xsl:value-of select="fri:find-local-attribute-value(., 'PaymentTypeCLS')"/> c  <xsl:value-of select="fri:format-date(fri:find-local-attribute-value(., 'From'))"/>
                                 </fo:block>
                             </fo:table-cell>
                             <xsl:variable name="basisNameCLS" select="fri:find-local-attribute-value(., 'BasisNameCLS')"/>
@@ -55,7 +55,14 @@
                             <fo:table-cell padding="2px">
                                 <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                     <xsl:variable name="amount" select="fri:find-local-attribute-value(., 'Amount')"/>
-                                    <xsl:value-of select="substring-before($amount, '.')"/> руб. <xsl:value-of select="substring-after($amount, '.')"/> коп.
+                                    <xsl:choose>
+                                        <xsl:when test="contains($amount, '.')">
+                                            <xsl:value-of select="substring-before($amount, '.')"/> руб. <xsl:value-of select="substring-after($amount, '.')"/> коп.
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="$amount"/> руб.
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>

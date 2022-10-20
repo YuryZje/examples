@@ -9,7 +9,6 @@
 
     <xsl:template name="eduProf">
         <xsl:param name="friExtract"/>
-        <xsl:param name="isChild"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
             <fo:block margin-left="5mm">
@@ -19,39 +18,38 @@
 
         <fo:block font-size="6pt" padding-top="3mm">
             <fo:table table-layout="fixed" width="100%" text-align="center">
-                <fo:table-column column-width="50%"/>
-                <fo:table-column column-width="50%"/>
+                <fo:table-column column-width="100%"/>
                 <fo:table-body>
                     <xsl:for-each select="$friExtract">
-                        <xsl:variable name="organizationName" select="fri:find-local-attribute-value(., 'OrganizationName')"/>
-                        <xsl:variable name="programKindNameCLS" select="fri:find-local-attribute-value(., 'ProgramKindNameCLS')"/>
-                        <xsl:variable name="professionName" select="fri:find-local-attribute-value(., 'ProfessionName')"/>
-                        <xsl:if test="$organizationName != '' or programKindNameCLS != '' or professionName !='' ">
-                            <fo:table-row>
-                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
-                                    <fo:block>Наименование организации, осуществляющей образовательную деятельность</fo:block>
-                                </fo:table-cell>
-                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
-                                    <fo:block><xsl:value-of select="$organizationName"/></fo:block>
-                                </fo:table-cell>
-                            </fo:table-row>
-                            <fo:table-row>
-                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
-                                    <fo:block>Вид образовательной программы</fo:block>
-                                </fo:table-cell>
-                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
-                                    <fo:block><xsl:value-of select="$programKindNameCLS"/></fo:block>
-                                </fo:table-cell>
-                            </fo:table-row>
-                            <fo:table-row>
-                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
-                                    <fo:block>Профессия рабочего, должность служащего</fo:block>
-                                </fo:table-cell>
-                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
-                                    <fo:block><xsl:value-of select="$professionName"/></fo:block>
-                                </fo:table-cell>
-                            </fo:table-row>
-                        </xsl:if>
+                        <fo:table-row>
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
+                                <fo:block></fo:block>
+                                <xsl:call-template name="show-attribute-in-table">
+                                    <xsl:with-param name="name" select="'Наименование типа выданного документа об образовании по НСИ ФРИ:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'EduDocTypeNameCLS')"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="show-attribute-in-table">
+                                    <xsl:with-param name="name" select="'Серия выданного документа об образовании:'"/>
+                                    <xsl:with-param name="value" select="fri:find-twin-value(., 'EduDocSeries', 'EduDocSerial')"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="show-attribute-in-table">
+                                    <xsl:with-param name="name" select="'Номер выданного документа об образовании:'"/>
+                                    <xsl:with-param name="value" select="fri:find-twin-value(., 'EduDocNumeral', 'EduDocNumber')"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="show-attribute-in-table">
+                                    <xsl:with-param name="name" select="'Дата выдачи документа об образовании:'"/>
+                                    <xsl:with-param name="value" select="fri:format-date(fri:find-local-attribute-value(., 'EduDocIssueDate'))"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="show-attribute-in-table">
+                                    <xsl:with-param name="name" select="'Наименование организации, выдавшей документ об образовании:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'EduDocIssuer')"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="show-attribute-in-table">
+                                    <xsl:with-param name="name" select="'Профессия рабочего, должность служащего:'"/>
+                                    <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'ProfessionName')"/>
+                                </xsl:call-template>
+                            </fo:table-cell>
+                        </fo:table-row>
                     </xsl:for-each>
                 </fo:table-body>
             </fo:table>

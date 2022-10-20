@@ -7,22 +7,22 @@
 
     <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes"/>
 
-    <xsl:template name="documentEdu">
+    <xsl:template name="documentMed">
         <xsl:param name="friDocument"/>
 
-        <xsl:if test="fri:find-category($friDocument/fri:Запись, 'EDU.PROF') != ''">
+        <xsl:if test="fri:find-category($friDocument/fri:Запись, 'ZDRV.MED.DATA.HIGH_TECH') != ''">
             <fo:block padding-top="3mm">
-                <xsl:call-template name="eduProf">
+                <xsl:call-template name="medDataHighTech">
                     <xsl:with-param name="friExtract"
-                                    select="$friDocument/fri:Запись/fri:Категория/fri:Код[text() = 'EDU.PROF']/ancestor::fri:Запись[1]"/>
+                                    select="$friDocument/fri:Запись/fri:Категория/fri:Код[text() = 'ZDRV.MED.DATA.HIGH_TECH']/ancestor::fri:Запись[1]"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>
-        <xsl:if test="fri:find-category($friDocument/fri:Запись, 'EDU.HIGH') != ''">
+        <xsl:if test="fri:find-category($friDocument/fri:Запись, 'ZDRV.MED.RECIPE') != ''">
             <fo:block padding-top="3mm">
-                <xsl:call-template name="eduHigh">
+                <xsl:call-template name="medRecipe">
                     <xsl:with-param name="friExtract"
-                                    select="$friDocument/fri:Запись/fri:Категория/fri:Код[text() = 'EDU.HIGH']/ancestor::fri:Запись[1]"/>
+                                    select="$friDocument/fri:Запись/fri:Категория/fri:Код[text() = 'ZDRV.MED.RECIPE']/ancestor::fri:Запись[1]"/>
                 </xsl:call-template>
             </fo:block>
         </xsl:if>

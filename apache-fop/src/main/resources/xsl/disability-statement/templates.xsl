@@ -34,4 +34,55 @@
         </xsl:if>
     </xsl:template>
 
+    <xsl:template name="show-attribute-in-table">
+         <xsl:param name="name"/>
+        <xsl:param name="value"/>
+
+        <xsl:if test="$name != '' and $value != ''">
+            <fo:table table-layout="fixed" width="100%" text-align="center">
+                <fo:table-column column-width="50%"/>
+                <fo:table-column column-width="50%"/>
+                <fo:table-body>
+                    <fo:table-row>
+                        <fo:table-cell padding="2px" text-align="left">
+                            <fo:block><xsl:value-of select="$name"/></fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell padding="2px" text-align="left">
+                            <fo:block><xsl:value-of select="$value"/></fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+                </fo:table-body>
+            </fo:table>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="show-boolean-in-table">
+        <xsl:param name="name"/>
+        <xsl:param name="value"/>
+
+        <xsl:if test="$name != '' and $value != '' and ($value = 'true' or $value = 'false')">
+            <fo:table table-layout="fixed" width="100%" text-align="center">
+                <fo:table-column column-width="50%"/>
+                <fo:table-column column-width="50%"/>
+                <fo:table-body>
+                    <fo:table-row>
+                        <fo:table-cell padding="2px" text-align="left">
+                            <fo:block><xsl:value-of select="$name"/></fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell padding="2px" text-align="left">
+                            <fo:block>
+                                <xsl:choose>
+                                    <xsl:when test="$value = 'true'"><xsl:value-of select="'Да'"/></xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="'Нет'"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+                </fo:table-body>
+            </fo:table>
+        </xsl:if>
+    </xsl:template>
+
 </xsl:stylesheet>

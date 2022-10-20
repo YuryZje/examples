@@ -35,6 +35,9 @@
     <xsl:import href="edu/edu.xsl"/>
     <xsl:import href="edu/edu.prof.xsl"/>
     <xsl:import href="edu/edu.high.xsl"/>
+    <xsl:import href="med/med.xsl"/>
+    <xsl:import href="med/med.high.tech.xsl"/>
+    <xsl:import href="med/med.recipe.xsl"/>
     <xsl:import href="signature.xsl"/>
 
     <xsl:template match="fri:ВыпискаФРИ">
@@ -75,6 +78,7 @@
                             <xsl:call-template name="documentIpra">
                                 <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='IPRA']/../../../fri:ВсеСведения"/>
                                 <xsl:with-param name="documentCode" select="'IPRA'"/>
+                                <xsl:with-param name="documentName" select="'ИПРА'"/>
                                 <xsl:with-param name="isChild" select="$isChild"/>
                             </xsl:call-template>
                         </xsl:when>
@@ -82,6 +86,7 @@
                             <xsl:call-template name="documentIpra">
                                 <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='IPR']/../../../fri:ВсеСведения"/>
                                 <xsl:with-param name="documentCode" select="'IPR'"/>
+                                <xsl:with-param name="documentName" select="'ИПР'"/>
                                 <xsl:with-param name="isChild" select="$isChild"/>
                             </xsl:call-template>
                         </xsl:when>
@@ -89,6 +94,7 @@
                             <xsl:call-template name="documentIpra">
                                 <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='IPRARCH']/../../../fri:ВсеСведения"/>
                                 <xsl:with-param name="documentCode" select="'IPR'"/>
+                                <xsl:with-param name="documentName" select="'ИПР'"/>
                                 <xsl:with-param name="isChild" select="$isChild"/>
                             </xsl:call-template>
                         </xsl:when>
@@ -100,7 +106,9 @@
 
                     <xsl:call-template name="documentEdu">
                         <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='EDU']/../../../fri:ВсеСведения"/>
-                        <xsl:with-param name="isChild" select="$isChild"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="documentMed">
+                        <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='MED']/../../../fri:ВсеСведения"/>
                     </xsl:call-template>
 
                     <xsl:variable name="vhcExtract">

@@ -130,4 +130,25 @@
         </xsl:choose>
     </xsl:function>
 
+    <xsl:function name="fri:find-twin-value">
+        <xsl:param name="node"/>
+        <xsl:param name="attributeOne"/>
+        <xsl:param name="attributeTwo"/>
+
+        <xsl:variable name="valueAttributeOne" select="fri:find-local-attribute-value($node, $attributeOne)"/>
+
+        <xsl:variable name="result">
+            <xsl:choose>
+                <xsl:when test="$valueAttributeOne = ''">
+                   <xsl:copy-of select="fri:find-local-attribute-value($node, $attributeTwo)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$valueAttributeOne"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:value-of select="$result"/>
+    </xsl:function>
+
 </xsl:stylesheet>
