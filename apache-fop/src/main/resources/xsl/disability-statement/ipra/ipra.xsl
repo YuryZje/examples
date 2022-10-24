@@ -26,6 +26,7 @@
                         <xsl:call-template name="ipraEvent">
                             <xsl:with-param name="friExtract"
                                             select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.',  $documentCode, '.MED.EVENT')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="documentCode" select="$documentCode"/>
                             <xsl:with-param name="header" select="''"/>
                         </xsl:call-template>
                     </xsl:if>
@@ -44,6 +45,7 @@
                             <xsl:call-template name="ipraEvent">
                                 <xsl:with-param name="friExtract"
                                                 select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.',  $documentCode, '.PSYCHOPED.EVENT')]/ancestor::fri:Запись[1]"/>
+                                <xsl:with-param name="documentCode" select="$documentCode"/>
                                 <xsl:with-param name="header" select="$header"/>
                             </xsl:call-template>
                         </fo:block>
@@ -54,6 +56,7 @@
                         <xsl:call-template name="ipraEvent">
                             <xsl:with-param name="friExtract"
                                             select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.PROF.EVENT')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="documentCode" select="$documentCode"/>
                             <xsl:with-param name="header" select="''"/>
                         </xsl:call-template>
                         <xsl:variable name="employmentServiceHelpAgree">
@@ -205,6 +208,7 @@
                         <xsl:call-template name="ipraEvent">
                             <xsl:with-param name="friExtract"
                                             select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.PHYSIOTHERAPY.EVENT')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="documentCode" select="$documentCode"/>
                             <xsl:with-param name="header" select="'Физкультурно-оздоровительные мероприятия, мероприятия по занятию спортом'"/>
                         </xsl:call-template>
                     </fo:block>
@@ -289,6 +293,7 @@
                     <fo:block padding-top="3mm">
                         <xsl:call-template name="ipraEvent">
                             <xsl:with-param name="friExtract" select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.REHAB')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="documentCode" select="$documentCode"/>
                         </xsl:call-template>
                     </fo:block>
                 </xsl:if>

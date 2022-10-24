@@ -63,7 +63,9 @@
                                                 <xsl:otherwise>Не нуждается</xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:when>
-                                        <xsl:otherwise>Нуждается</xsl:otherwise>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="fri:find-local-attribute-value(., 'ExecutorMarkName')"/>
+                                        </xsl:otherwise>
                                     </xsl:choose>
                                 </fo:block>
                             </fo:table-cell>

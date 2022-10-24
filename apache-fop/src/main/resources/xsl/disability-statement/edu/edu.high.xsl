@@ -25,7 +25,7 @@
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block></fo:block>
                                 <xsl:call-template name="show-attribute-in-table">
-                                    <xsl:with-param name="name" select="'Наименование типа выданного документа об образовании по НСИ ФРИ:'"/>
+                                    <xsl:with-param name="name" select="'Наименование типа выданного документа об образовании:'"/>
                                     <xsl:with-param name="value" select="fri:find-local-attribute-value(., 'EduDocTypeNameCLS')"/>
                                 </xsl:call-template>
                                 <xsl:call-template name="show-attribute-in-table">
