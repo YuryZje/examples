@@ -51,6 +51,24 @@
                         </fo:block>
                     </xsl:if>
                 </xsl:if>
+                <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PSYCHOPED.FORECAST')) != ''">
+                    <fo:block padding-top="3mm">
+                        <xsl:call-template name="show-name-in-row">
+                            <xsl:with-param name="friExtract"
+                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.PSYCHOPED.FORECAST')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="name" select="'Name'"/>
+                        </xsl:call-template>
+                    </fo:block>
+                </xsl:if>
+                <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PSYCHOPED.GROUP')) != ''">
+                    <fo:block padding-top="3mm">
+                        <xsl:call-template name="show-name-in-row">
+                            <xsl:with-param name="friExtract"
+                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.PSYCHOPED.GROUP')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="name" select="'GroupTypeName'"/>
+                        </xsl:call-template>
+                    </fo:block>
+                </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PROF.EVENT')) != ''">
                     <fo:block padding-top="5mm">
                         <xsl:call-template name="ipraEvent">
@@ -92,6 +110,26 @@
                             </fo:block>
                         </xsl:if>
                     </fo:block>
+                </xsl:if>
+                <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PROF.FORECAST')) != ''">
+                    <fo:block padding-top="3mm">
+                        <xsl:call-template name="show-name-in-row">
+                            <xsl:with-param name="friExtract"
+                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.PROF.FORECAST')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="name" select="'Name'"/>
+                        </xsl:call-template>
+                    </fo:block>
+                </xsl:if>
+                <xsl:if test="$documentCode = 'IPR'">
+                    <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PROF.GROUP')) != ''">
+                        <fo:block padding-top="3mm">
+                            <xsl:call-template name="show-name-in-row">
+                                <xsl:with-param name="friExtract"
+                                                select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.PROF.GROUP')]/ancestor::fri:Запись[1]"/>
+                                <xsl:with-param name="name" select="'GroupTypeName'"/>
+                            </xsl:call-template>
+                        </fo:block>
+                    </xsl:if>
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.NONRECOMMLABORKINDS')) != ''">
                     <fo:block padding-top="3mm">
@@ -203,6 +241,21 @@
                         <xsl:with-param name="isChild" select="$isChild"/>
                     </xsl:call-template>
                 </xsl:if>
+                <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.SOCIAL.FORECAST')) != ''">
+                    <xsl:call-template name="ipraSocialForecast">
+                        <xsl:with-param name="friExtract"
+                                        select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.SOCIAL.FORECAST')]/ancestor::fri:Запись[1]"/>
+                    </xsl:call-template>
+                </xsl:if>
+                <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.SOCIAL.GROUP')) != ''">
+                    <fo:block padding-top="3mm">
+                        <xsl:call-template name="show-name-in-row">
+                            <xsl:with-param name="friExtract"
+                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.SOCIAL.GROUP')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="name" select="'GroupTypeName'"/>
+                        </xsl:call-template>
+                    </fo:block>
+                </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PHYSIOTHERAPY.EVENT')) != ''">
                     <fo:block padding-top="3mm">
                         <xsl:call-template name="ipraEvent">
@@ -215,7 +268,7 @@
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.TSR.FEDERAL.ITEM')) != ''">
                     <fo:block padding-top="3mm">
-                        <xsl:call-template name="ipraTsr">
+                        <xsl:call-template name="ipraItemTsr">
                             <xsl:with-param name="friExtract"
                                             select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.TSR.FEDERAL.ITEM')]/ancestor::fri:Запись[1]"/>
                             <xsl:with-param name="header"
@@ -255,7 +308,7 @@
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.TSR.OWNMONEY.ITEM')) != ''">
                     <fo:block padding-top="3mm">
-                        <xsl:call-template name="ipraTsr">
+                        <xsl:call-template name="ipraItemTsr">
                             <xsl:with-param name="friExtract"
                                             select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.TSR.OWNMONEY.ITEM')]/ancestor::fri:Запись[1]"/>
                             <xsl:with-param name="header"
@@ -274,7 +327,7 @@
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.TSR.REGIONAL.ITEM')) != ''">
                     <fo:block padding-top="3mm">
-                        <xsl:call-template name="ipraTsr">
+                        <xsl:call-template name="ipraItemTsr">
                             <xsl:with-param name="friExtract" select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.TSR.REGIONAL.ITEM')]/ancestor::fri:Запись[1]"/>
                             <xsl:with-param name="header" select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые
                             ', fri:invalid-type-name($isChild, 'Д'), ' за счет средств бюджета субъекта Российской Федерации')"/>
@@ -288,6 +341,16 @@
                                             select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.TSR.LOCAL')]/ancestor::fri:Запись[1]"/>
                         </xsl:call-template>
                     </fo:block>
+                </xsl:if>
+                <xsl:if test="$documentCode = 'IPR'">
+                    <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.TSR')) != ''">
+                        <fo:block padding-top="3mm">
+                            <xsl:call-template name="ipraTsr">
+                                <xsl:with-param name="friExtract"
+                                                select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.TSR')]/ancestor::fri:Запись[1]"/>
+                            </xsl:call-template>
+                        </fo:block>
+                    </xsl:if>
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.IPRA.REHAB')) != ''">
                     <fo:block padding-top="3mm">
@@ -314,7 +377,50 @@
                         </xsl:call-template>
                     </fo:block>
                 </xsl:if>
-                <xsl:if test="fri:find-attribute-value(./fri:Запись, concat('MSE.', $documentCode, '.GENERAL'), 'Number') != ''">
+                <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.MED.FORECAST')) != ''">
+                    <fo:block padding-top="3mm">
+                        <xsl:call-template name="ipraMedForecast">
+                            <xsl:with-param name="friExtract"
+                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.MED.FORECAST')]/ancestor::fri:Запись[1]"/>
+                        </xsl:call-template>
+                    </fo:block>
+                </xsl:if>
+                <xsl:if test="$documentCode = 'IPR'">
+                    <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.MED.GROUP')) != ''">
+                        <fo:block padding-top="3mm">
+                            <xsl:call-template name="show-name-in-row">
+                                <xsl:with-param name="friExtract"
+                                                select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.MED.GROUP')]/ancestor::fri:Запись[1]"/>
+                                <xsl:with-param name="name" select="'GroupTypeName'"/>
+                            </xsl:call-template>
+                        </fo:block>
+                    </xsl:if>
+                </xsl:if>
+                <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.LIFE_RESTRICT')) != ''">
+                    <fo:block padding-top="3mm">
+                        <xsl:call-template name="commonKeyValue">
+                            <xsl:with-param name="friExtract"
+                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.LIFE_RESTRICT')]/ancestor::fri:Запись[1]"/>
+                            <xsl:with-param name="isChild" select="$isChild"/>
+                        </xsl:call-template>
+                    </fo:block>
+                </xsl:if>
+
+                <xsl:variable name="ipraNumberIpra">
+                    <xsl:value-of select="fri:find-attribute-value(./fri:Запись, concat('MSE.', $documentCode, '.GENERAL'), 'Number')"/>
+                </xsl:variable>
+                <xsl:variable name="ipraNumber">
+                    <xsl:choose>
+                        <xsl:when test="$ipraNumberIpra = ''">
+                            <xsl:value-of select="fri:find-attribute-value(./fri:Запись, concat('MSE.', $documentCode, '.GENERAL'), 'CardNumber')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$ipraNumberIpra"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+
+                <xsl:if test = "$ipraNumber != ''">
                     <fo:block font-size="8pt" padding-top="1mm">
                         <fo:table table-layout="fixed" width="100%" text-align="center">
                             <fo:table-column column-width="50%"/>
@@ -346,7 +452,7 @@
                                         </fo:table-cell>
                                         <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                             <fo:block>
-                                                <xsl:value-of select="fri:find-attribute-value(./fri:Запись, concat('MSE.', $documentCode, '.GENERAL'), 'Number')"/>
+                                                <xsl:value-of select="$ipraNumber"/>
                                             </fo:block>
                                         </fo:table-cell>
                                     </fo:table-row>

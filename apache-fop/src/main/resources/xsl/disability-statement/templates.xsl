@@ -85,4 +85,31 @@
         </xsl:if>
     </xsl:template>
 
+    <xsl:template name="show-name-in-row">
+        <xsl:param name="friExtract"/>
+        <xsl:param name="name"/>
+
+        <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
+            <fo:block margin-left="5mm">
+                <xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/>
+            </fo:block>
+        </fo:block>
+        <fo:block font-size="6pt" padding-top="3mm">
+            <fo:table table-layout="fixed" width="100%" text-align="center">
+                <fo:table-column column-width="100%"/>
+                <fo:table-body>
+                    <xsl:for-each select="$friExtract">
+                        <fo:table-row>
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
+                                <fo:block>
+                                    <xsl:value-of select="fri:find-local-attribute-value(., $name)"/>
+                                </fo:block>
+                            </fo:table-cell>
+                        </fo:table-row>
+                    </xsl:for-each>
+                </fo:table-body>
+            </fo:table>
+        </fo:block>
+    </xsl:template>
+
 </xsl:stylesheet>

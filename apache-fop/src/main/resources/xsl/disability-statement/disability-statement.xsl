@@ -23,8 +23,11 @@
     <xsl:import href="ipra/ipra.recomm.labor.conditions.xsl"/>
     <xsl:import href="ipra/ipra.prof.general.xsl"/>
     <xsl:import href="ipra/ipra.social.xsl"/>
-    <xsl:import href="ipra/ipra.tsr.xsl"/>
+    <xsl:import href="ipra/ipra.item.tsr.xsl"/>
     <xsl:import href="ipra/ipra.help.xsl"/>
+    <xsl:import href="ipra/ipra.med.forecast.xsl"/>
+    <xsl:import href="ipra/ipra.social.forecast.xsl"/>
+    <xsl:import href="ipra/ipra.tsr.xsl"/>
     <xsl:import href="vch.xsl"/>
     <xsl:import href="ipra/ipra.tsr.msk.xsl"/>
     <xsl:import href="common.key.value.xsl"/>

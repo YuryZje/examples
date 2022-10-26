@@ -28,20 +28,44 @@
                 <fo:table-column column-width="50%"/>
                 <fo:table-body>
                     <xsl:for-each select="$friExtract/fri:ВсеАтрибуты/fri:Атрибут">
-                        <xsl:if test="./fri:ТипДанных != 'NUMBER'">
-                            <fo:table-row>
-                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
-                                    <fo:block>
-                                       <xsl:value-of select="replace(./fri:Наименование, '- значение', '')"/>
-                                    </fo:block>
-                                </fo:table-cell>
-                                <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
-                                    <fo:block>
-                                        <xsl:value-of select="./fri:Значение"/>
-                                    </fo:block>
-                                </fo:table-cell>
-                            </fo:table-row>
-                        </xsl:if>
+                        <xsl:choose>
+                            <xsl:when test="./fri:ТипДанных != 'NUMBER'">
+                                <fo:table-row>
+                                    <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
+                                        <fo:block>
+                                           <xsl:value-of select="replace(./fri:Наименование, '- значение', '')"/>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
+                                        <fo:block>
+                                            <xsl:value-of select="./fri:Значение"/>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                </fo:table-row>
+                            </xsl:when>
+                            <xsl:when test="./fri:ТипДанных = 'NUMBER'">
+                                <fo:table-row>
+                                    <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
+                                        <fo:block>
+                                            <xsl:value-of select="replace(./fri:Наименование, '- значение', '')"/>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
+                                        <fo:block>
+                                            <xsl:variable name="value" select="./fri:Значение"/>
+                                            <xsl:choose>
+                                                <xsl:when test="$value = '1'">Да</xsl:when>
+                                                <xsl:when test="$value = '0'">Нет</xsl:when>
+                                                <xsl:otherwise><xsl:value-of select="$value"/></xsl:otherwise>
+                                            </xsl:choose>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                </fo:table-row>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <fo:table-row><fo:table-cell><fo:block>Нет данных</fo:block></fo:table-cell></fo:table-row>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:for-each>
                 </fo:table-body>
             </fo:table>
