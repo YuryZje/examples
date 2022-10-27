@@ -49,7 +49,7 @@
                     </xsl:call-template>
                     <xsl:call-template name="rowIpraForecast">
                         <xsl:with-param name="functionName" select="'Степень восстановления социально-средового статуса'"/>
-                        <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'SelfServiceName')"/>
+                        <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'SocStatusName')"/>
                     </xsl:call-template>
                 </fo:table-body>
             </fo:table>

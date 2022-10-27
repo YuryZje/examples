@@ -28,6 +28,7 @@
     <xsl:import href="ipra/ipra.med.forecast.xsl"/>
     <xsl:import href="ipra/ipra.social.forecast.xsl"/>
     <xsl:import href="ipra/ipra.tsr.xsl"/>
+    <xsl:import href="ipra/ipra.life.restrict.xsl"/>
     <xsl:import href="vch.xsl"/>
     <xsl:import href="ipra/ipra.tsr.msk.xsl"/>
     <xsl:import href="common.key.value.xsl"/>

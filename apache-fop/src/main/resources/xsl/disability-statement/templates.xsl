@@ -112,4 +112,50 @@
         </fo:block>
     </xsl:template>
 
+    <xsl:template name="show-name-value-in-row">
+        <xsl:param name="friExtract"/>
+        <xsl:param name="headerName"/>
+        <xsl:param name="headerValue"/>
+        <xsl:param name="name"/>
+        <xsl:param name="value"/>
+
+        <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
+            <fo:block margin-left="5mm">
+                <xsl:value-of select="$friExtract[1]/fri:Категория/fri:Наименование"/>
+            </fo:block>
+        </fo:block>
+        <fo:block font-size="6pt" padding-top="3mm">
+            <fo:table table-layout="fixed" width="100%" text-align="center">
+                <fo:table-column column-width="50%"/>
+                <fo:table-column column-width="50%"/>
+                <fo:table-header>
+                    <fo:table-row>
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
+                            <fo:block><xsl:value-of select="$headerName"/></fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell padding="2px" border="solid black 1px" text-align="center">
+                            <fo:block><xsl:value-of select="$headerValue"/></fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+                </fo:table-header>
+                <fo:table-body>
+                    <xsl:for-each select="$friExtract">
+                        <fo:table-row>
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
+                                <fo:block>
+                                    <xsl:value-of select="fri:find-local-attribute-value(., $name)"/>
+                                </fo:block>
+                            </fo:table-cell>
+                            <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
+                                <fo:block>
+                                    <xsl:value-of select="fri:find-local-attribute-value(., $value)"/>
+                                </fo:block>
+                            </fo:table-cell>
+                        </fo:table-row>
+                    </xsl:for-each>
+                </fo:table-body>
+            </fo:table>
+        </fo:block>
+    </xsl:template>
+
 </xsl:stylesheet>

@@ -31,7 +31,10 @@
                     <fo:table-row>
                         <fo:table-cell padding="2px" border="solid black 1px">
                             <fo:block>
-                                Заключение о нуждаемости (ненуждаемости) в проведении мероприятий по реабилитации или абилитации
+                                <xsl:choose>
+                                    <xsl:when test="$documentCode = 'IPR'">Наименование отметки о выполнении</xsl:when>
+                                    <xsl:otherwise>Заключение о нуждаемости (ненуждаемости) в проведении мероприятий по реабилитации или абилитации</xsl:otherwise>
+                                </xsl:choose>
                             </fo:block>
                         </fo:table-cell>
                         <fo:table-cell padding="2px" border="solid black 1px">
@@ -64,7 +67,7 @@
                                             </xsl:choose>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:value-of select="fri:find-local-attribute-value(., 'ExecutorMarkName')"/>
+                                            <xsl:value-of select="fri:if-null(fri:find-local-attribute-value(., 'ExecutorMarkName'), 'Нет данных')"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </fo:block>
