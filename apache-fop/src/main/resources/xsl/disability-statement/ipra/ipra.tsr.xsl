@@ -43,7 +43,7 @@
                         <fo:table-row>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:value-of select="fri:find-local-attribute-value(., 'ItemName')"/>
+                                    <xsl:value-of select="fri:if-null(fri:find-local-attribute-value(., 'Name'), fri:find-local-attribute-value(., 'ItemName'))"/>
                                 </fo:block>
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
@@ -64,7 +64,7 @@
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:value-of select="fri:find-local-attribute-value(., 'ExecutorMarkName')"/>
+                                    <xsl:value-of select="fri:if-null(fri:find-local-attribute-value(., 'ExecutorMarkName'), 'Нет данных')"/>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>

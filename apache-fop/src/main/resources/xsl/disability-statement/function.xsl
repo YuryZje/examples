@@ -151,6 +151,7 @@
         <xsl:value-of select="$result"/>
     </xsl:function>
 
+
     <xsl:function name="fri:if-null">
         <xsl:param name="value"/>
         <xsl:param name="ifnullvalue"/>

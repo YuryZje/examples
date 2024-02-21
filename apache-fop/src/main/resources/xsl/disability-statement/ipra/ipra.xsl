@@ -266,10 +266,12 @@
                     </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.SOCIAL.FORECAST')) != ''">
-                    <xsl:call-template name="ipraSocialForecast">
-                        <xsl:with-param name="friExtract"
-                                        select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.SOCIAL.FORECAST')]/ancestor::fri:Запись[1]"/>
-                    </xsl:call-template>
+                    <fo:block padding-top="3mm">
+                        <xsl:call-template name="ipraSocialForecast">
+                            <xsl:with-param name="friExtract"
+                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.SOCIAL.FORECAST')]/ancestor::fri:Запись[1]"/>
+                        </xsl:call-template>
+                    </fo:block>
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.SOCIAL.GROUP')) != ''">
                     <fo:block padding-top="3mm">

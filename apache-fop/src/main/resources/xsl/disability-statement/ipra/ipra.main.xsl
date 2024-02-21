@@ -155,10 +155,13 @@
                                 </fo:table-cell>
                             </fo:table-row>
                         </xsl:if>
-                        <xsl:variable name="sentOrgName">
-                            <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'SentOrgName')"/>
+                        <xsl:variable name="orgName">
+                            <xsl:value-of select="fri:find-twin-value($friExtract, 'SentOrgName', 'MedOrgName')"/>
                         </xsl:variable>
-                        <xsl:if test="$sentOrgName != ''">
+                        <xsl:variable name="orgAddress">
+                            <xsl:value-of select="fri:find-twin-value($friExtract, 'SentOrgAddress', 'MedOrgAddress')"/>
+                        </xsl:variable>
+                        <xsl:if test="$orgName != '' or $orgAddress = '' ">
                             <fo:table-row border-bottom="solid black 1px">
                                 <fo:table-cell>
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
@@ -169,10 +172,10 @@
                                 <fo:table-cell>
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                         <fo:block>
-                                            <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'SentOrgName')"/>
+                                            <xsl:value-of select="$orgName"/>
                                         </fo:block>
                                         <fo:block>
-                                            <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'SentOrgAddress')"/>
+                                            <xsl:value-of select="$orgAddress"/>
                                         </fo:block>
                                     </fo:block>
                                 </fo:table-cell>

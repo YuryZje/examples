@@ -33,15 +33,16 @@
                                 <fo:block>
                                     <xsl:variable name="value" select="./fri:Значение"/>
                                     <xsl:choose>
-                                        <xsl:when test="$value = '2'">1 степень</xsl:when>
-                                        <xsl:when test="$value = '3'">2 степень</xsl:when>
-                                        <xsl:when test="$value = '4'">3 степень</xsl:when>
+                                        <xsl:when test="$value = '1'">1 степень</xsl:when>
+                                        <xsl:when test="$value = '2'">2 степень</xsl:when>
+                                        <xsl:when test="$value = '3'">3 степень</xsl:when>
                                         <xsl:otherwise>Значение не указано</xsl:otherwise>
                                     </xsl:choose>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
                     </xsl:for-each>
+                    <fo:table-row><fo:table-cell><fo:block></fo:block></fo:table-cell></fo:table-row>
                 </fo:table-body>
             </fo:table>
         </fo:block>
