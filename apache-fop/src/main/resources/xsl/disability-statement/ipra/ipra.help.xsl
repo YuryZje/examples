@@ -10,6 +10,7 @@
 
     <xsl:template name="ipraHelp">
         <xsl:param name="friExtract"/>
+        <xsl:param name="isIpra20221024"/>
         <xsl:param name="isChild"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
@@ -34,8 +35,15 @@
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:choose>
-                                        <xsl:when test="fri:find-local-attribute-value(., 'IsNeeded') = 'true'">Нуждается</xsl:when>
-                                        <xsl:otherwise>Не нуждается</xsl:otherwise>
+                                        <xsl:when test="$isIpra20221024">
+                                            Нуждается
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:choose>
+                                                <xsl:when test="fri:find-local-attribute-value(., 'IsNeeded') = 'true'">Нуждается</xsl:when>
+                                                <xsl:otherwise>Не нуждается</xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:otherwise>
                                     </xsl:choose>
                                 </fo:block>
                             </fo:table-cell>

@@ -10,6 +10,7 @@
     <xsl:template name="ipraEvent">
         <xsl:param name="friExtract"/>
         <xsl:param name="documentCode"/>
+        <xsl:param name="isIpra20221024"/>
         <xsl:param name="header"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
@@ -52,7 +53,14 @@
                         <fo:table-row>
                             <fo:table-cell padding="2px" border="solid black 1px" number-columns-spanned="3">
                                 <fo:block>
-                                    <xsl:value-of select="fri:find-local-attribute-value(., 'GroupTypeName')"/>
+                                    <xsl:choose>
+                                        <xsl:when test="$isIpra20221024">
+                                            <xsl:value-of select="fri:find-local-attribute-value(., 'EventTypeName')"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="fri:find-local-attribute-value(., 'GroupTypeName')"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
@@ -62,8 +70,15 @@
                                     <xsl:choose>
                                         <xsl:when test="$documentCode = 'IPRA'">
                                             <xsl:choose>
-                                                <xsl:when test="fri:find-local-attribute-value(., 'IsNeeded') = 'true'">Нуждается</xsl:when>
-                                                <xsl:otherwise>Не нуждается</xsl:otherwise>
+                                                <xsl:when test="$isIpra20221024">
+                                                    Нуждается
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:choose>
+                                                        <xsl:when test="fri:find-local-attribute-value(., 'IsNeeded') = 'true'">Нуждается</xsl:when>
+                                                        <xsl:otherwise>Не нуждается</xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:when>
                                         <xsl:otherwise>

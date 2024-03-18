@@ -22,6 +22,7 @@
     <xsl:import href="ipra/ipra.non.recomm.labor.kinds.xsl"/>
     <xsl:import href="ipra/ipra.recomm.labor.conditions.xsl"/>
     <xsl:import href="ipra/ipra.prof.general.xsl"/>
+    <xsl:import href="ipra/ipra.2022.prof.general.xsl"/>
     <xsl:import href="ipra/ipra.social.xsl"/>
     <xsl:import href="ipra/ipra.item.tsr.xsl"/>
     <xsl:import href="ipra/ipra.help.xsl"/>
@@ -77,12 +78,24 @@
                         <xsl:value-of select="fri:find-document-by-code(fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код, 'IPRARCH')"/>
                     </xsl:variable>
 
+                    <xsl:variable name="isIpra20221024">
+                        <xsl:choose>
+                            <xsl:when test="fri:find-document-by-code(fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:КодВерсия, 'IPRA_20221024') != ''">
+                                <xsl:value-of select="'true'"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="'false'"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+
                     <xsl:choose>
                         <xsl:when test="$isIpra != ''">
                             <xsl:call-template name="documentIpra">
                                 <xsl:with-param name="friDocument" select="fri:ВсеДокументы/fri:Документ/fri:РеквизитыДокумента/fri:ТипДокумента/fri:Код[text()='IPRA']/../../../fri:ВсеСведения"/>
                                 <xsl:with-param name="documentCode" select="'IPRA'"/>
                                 <xsl:with-param name="documentName" select="'ИПРА'"/>
+                                <xsl:with-param name="isIpra20221024" select="$isIpra20221024"/>
                                 <xsl:with-param name="isChild" select="$isChild"/>
                             </xsl:call-template>
                         </xsl:when>

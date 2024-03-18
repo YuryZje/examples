@@ -11,6 +11,7 @@
     <xsl:template name="ipraItemTsr">
         <xsl:param name="friExtract"/>
         <xsl:param name="header"/>
+        <xsl:param name="isIpra20221024"/>
 
         <fo:block font-size="12pt" padding-top="5mm" padding-bottom="5mm" text-align="left" background-color="#d7eafc">
             <fo:block margin-left="5mm">
@@ -68,7 +69,14 @@
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:value-of select="fri:find-local-attribute-value(., 'Executor')"/>
+                                    <xsl:choose>
+                                        <xsl:when test="$isIpra20221024">
+                                            <xsl:value-of select="fri:find-local-attribute-value(., 'ExecutorName')"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="fri:find-local-attribute-value(., 'Executor')"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
