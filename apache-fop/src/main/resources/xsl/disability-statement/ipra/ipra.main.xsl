@@ -118,7 +118,14 @@
                                         </xsl:choose>
                                     </xsl:variable>
                                     <xsl:variable name="ipraEndDate">
-                                        <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'EndDate')"/>
+                                        <xsl:choose>
+                                            <xsl:when test="fri:find-local-attribute-value($friExtract, 'EndDate') != ''">
+                                                 <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'EndDate')"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="$friExtract/../../fri:РеквизитыДокумента/fri:СрокДействия"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:variable>
                                     <xsl:value-of select="$isFirst"/>
                                     <xsl:if test="$ipraEndDate != ''">
@@ -158,6 +165,9 @@
                         <xsl:variable name="orgName">
                             <xsl:value-of select="fri:find-twin-value($friExtract, 'SentOrgName', 'MedOrgName')"/>
                         </xsl:variable>
+                        <xsl:variable name="medOrgOgrn">
+                            <xsl:value-of select="fri:find-twin-value($friExtract, 'SentOrgOgrn', 'MedOrgOgrn')"/>
+                        </xsl:variable>
                         <xsl:variable name="orgAddress">
                             <xsl:value-of select="fri:find-twin-value($friExtract, 'SentOrgAddress', 'MedOrgAddress')"/>
                         </xsl:variable>
@@ -191,7 +201,7 @@
                                 <fo:table-cell>
                                     <fo:block padding-bottom="0.5mm" padding-top="0.5mm">
                                         <fo:block>
-                                            <xsl:value-of select="fri:find-local-attribute-value($friExtract, 'SentOrgOgrn')"/>
+                                            <xsl:value-of select="$medOrgOgrn"/>
                                         </fo:block>
                                     </fo:block>
                                 </fo:table-cell>

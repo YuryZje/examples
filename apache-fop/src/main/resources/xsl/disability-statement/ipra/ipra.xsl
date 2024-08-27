@@ -83,7 +83,7 @@
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PROF.EVENT')) != ''">
                     <fo:block padding-top="3mm">
                         <xsl:choose>
-                            <xsl:when test="$isIpra20221024">
+                            <xsl:when test="$isIpra20221024 = 'true'">
                                 <fo:block padding-top="3mm">
                                     <xsl:call-template name="show-name-in-row">
                                         <xsl:with-param name="friExtract"
@@ -175,7 +175,7 @@
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PROF.GENERAL')) != ''">
                     <fo:block padding-top="3mm">
                     <xsl:choose>
-                        <xsl:when test="$isIpra20221024">
+                        <xsl:when test="$isIpra20221024 = 'true'">
                             <xsl:call-template name="ipra2022ProfGeneral">
                                 <xsl:with-param name="friExtract"
                                                 select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.PROF.GENERAL')]/ancestor::fri:Запись[1]"/>
@@ -228,7 +228,7 @@
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.PROF.RECOMMEND')) != ''">
                     <xsl:variable name="attributeName">
                         <xsl:choose>
-                            <xsl:when test="$isIpra20221024">
+                            <xsl:when test="$isIpra20221024 = 'true'">
                                 <xsl:value-of select="'WorkingConditionsName'"/>
                             </xsl:when>
                             <xsl:otherwise><xsl:value-of select="'Name'"/></xsl:otherwise>
@@ -296,7 +296,7 @@
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.SOCIAL')) != ''">
                         <xsl:choose>
-                        <xsl:when test="$isIpra20221024">
+                        <xsl:when test="$isIpra20221024 = 'true'">
                             <fo:block padding-top="3mm">
                                 <xsl:call-template name="show-name-in-row">
                                     <xsl:with-param name="friExtract"
@@ -344,14 +344,27 @@
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.TSR.FEDERAL.ITEM')) != ''">
                     <fo:block padding-top="3mm">
-                        <xsl:call-template name="ipraItemTsr">
-                            <xsl:with-param name="friExtract"
-                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.TSR.FEDERAL.ITEM')]/ancestor::fri:Запись[1]"/>
-                            <xsl:with-param name="header"
-                                            select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые ',
+                        <xsl:choose>
+                            <xsl:when test="$isIpra20221024 = 'true'">
+                                <xsl:call-template name="ipra2022ItemTsr">
+                                    <xsl:with-param name="friExtract"
+                                                    select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.TSR.FEDERAL.ITEM')]/ancestor::fri:Запись[1]"/>
+                                    <xsl:with-param name="header"
+                                                    select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые ',
+                                                    fri:invalid-type-name($isChild, 'Д'))"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="ipraItemTsr">
+                                    <xsl:with-param name="friExtract"
+                                                    select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.TSR.FEDERAL.ITEM')]/ancestor::fri:Запись[1]"/>
+                                    <xsl:with-param name="header"
+                                                    select="concat('Рекомендуемые технические средства реабилитации (ТСР) и услуги по реабилитации или абилитации, предоставляемые ',
                                                     fri:invalid-type-name($isChild, 'Д'), ' за счет средств федерального бюджета')"/>
-                            <xsl:with-param name="isIpra20221024" select="$isIpra20221024"/>
-                        </xsl:call-template>
+                                    <xsl:with-param name="isIpra20221024" select="$isIpra20221024"/>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </fo:block>
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.TSR.FEDERAL')) != ''">
@@ -367,14 +380,29 @@
                                     <fo:table-row>
                                         <fo:table-cell padding="2px">
                                             <fo:block>
-                                                Сопровождение инвалида к месту нахождения организации, в
-                                                которую выдано направление для получения ТСР за счет
-                                                средств федерального бюджета, и обратно:
+                                                <xsl:choose>
+                                                    <xsl:when test="$isIpra20221024 = 'true'">
+                                                        Сопровождение инвалида к месту нахождения организации, в
+                                                        которую выдано направление для получения ТСР, и обратно:
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        Сопровождение инвалида к месту нахождения организации, в
+                                                        которую выдано направление для получения ТСР за счет
+                                                        средств федерального бюджета, и обратно:
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
                                             </fo:block>
                                         </fo:table-cell>
                                         <fo:table-cell padding="2px">
-                                            <fo:block text-align="left">
-                                                <xsl:value-of select="$needTransportHelpConcl"/>
+                                            <fo:block text-align="left" margin-left="10px" text-align-last="end">
+                                                <xsl:choose>
+                                                    <xsl:when test="$needTransportHelpConcl != ''">
+                                                        <xsl:text>Не способен к самостоятельному передвижению</xsl:text>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:text>Способен к самостоятельному передвижению</xsl:text>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
                                             </fo:block>
                                         </fo:table-cell>
                                     </fo:table-row>
@@ -450,10 +478,20 @@
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.FORECAST')) != ''">
                     <fo:block padding-top="3mm">
-                        <xsl:call-template name="ipraForecast">
-                            <xsl:with-param name="friExtract"
-                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.FORECAST')]/ancestor::fri:Запись[1]"/>
-                        </xsl:call-template>
+                        <xsl:choose>
+                        <xsl:when test="$isIpra20221024 = 'true'">
+                            <xsl:call-template name="ipra2022Forecast">
+                                <xsl:with-param name="friExtract"
+                                                select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.FORECAST')]/ancestor::fri:Запись[1]"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="ipraForecast">
+                                <xsl:with-param name="friExtract"
+                                                select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.FORECAST')]/ancestor::fri:Запись[1]"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                        </xsl:choose>
                     </fo:block>
                 </xsl:if>
                 <xsl:if test="$documentCode = 'IPR'">
@@ -469,10 +507,20 @@
                 </xsl:if>
                 <xsl:if test="fri:find-category(./fri:Запись, concat('MSE.', $documentCode, '.LIFE_RESTRICT')) != ''">
                     <fo:block padding-top="3mm">
-                        <xsl:call-template name="ipraLifeRestrict">
-                            <xsl:with-param name="friExtract"
-                                            select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.LIFE_RESTRICT')]/ancestor::fri:Запись[1]"/>
-                        </xsl:call-template>
+                        <xsl:choose>
+                            <xsl:when test="$isIpra20221024 = 'true'">
+                                <xsl:call-template name="ipra2022LifeRestrict">
+                                    <xsl:with-param name="friExtract"
+                                                    select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.LIFE_RESTRICT')]/ancestor::fri:Запись[1]"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="ipraLifeRestrict">
+                                    <xsl:with-param name="friExtract"
+                                                    select="./fri:Запись/fri:Категория/fri:Код[text() = concat('MSE.', $documentCode, '.LIFE_RESTRICT')]/ancestor::fri:Запись[1]"/>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </fo:block>
                 </xsl:if>
 
@@ -502,7 +550,17 @@
                                     </fo:table-cell>
                                     <fo:table-cell border="none" text-align="left">
                                         <fo:block>
-                                            <xsl:value-of select="fri:format-date(fri:find-attribute-value(./fri:Запись, concat('MSE.', $documentCode, '.GENERAL'), 'EndDate'))"/>
+                                            <xsl:variable name="docEndDate">
+                                                <xsl:value-of select="fri:format-date(fri:find-attribute-value(./fri:Запись, concat('MSE.', $documentCode, '.GENERAL'), 'EndDate'))"/>
+                                            </xsl:variable>
+                                            <xsl:choose>
+                                                <xsl:when test="$docEndDate != ''">
+                                                    <xsl:value-of select="$docEndDate"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:value-of select="fri:format-date(./../fri:РеквизитыДокумента/fri:СрокДействия)"/>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>

@@ -35,7 +35,7 @@
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
                                     <xsl:choose>
-                                        <xsl:when test="$isIpra20221024">
+                                        <xsl:when test="$isIpra20221024 = 'true'">
                                             Нуждается
                                         </xsl:when>
                                         <xsl:otherwise>

@@ -76,6 +76,10 @@
                         <xsl:with-param name="functionName" select="'Заниматься трудовой деятельностью'"/>
                         <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'WorkValue')"/>
                     </xsl:call-template>
+                    <xsl:call-template name="rowIpraForecast">
+                        <xsl:with-param name="functionName" select="'Достижение или формирование способности к самообслуживанию'"/>
+                        <xsl:with-param name="functionValue" select="fri:find-local-attribute-value($friExtract, 'SelfServiceValue')"/>
+                    </xsl:call-template>
                     <fo:table-row>
                         <fo:table-cell><fo:block></fo:block></fo:table-cell>
                     </fo:table-row>

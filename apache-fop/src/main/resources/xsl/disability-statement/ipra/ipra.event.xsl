@@ -54,8 +54,8 @@
                             <fo:table-cell padding="2px" border="solid black 1px" number-columns-spanned="3">
                                 <fo:block>
                                     <xsl:choose>
-                                        <xsl:when test="$isIpra20221024">
-                                            <xsl:value-of select="fri:find-local-attribute-value(., 'EventTypeName')"/>
+                                        <xsl:when test="$isIpra20221024 = 'true'">
+                                            <xsl:value-of select="fri:find-local-attribute-value(., 'EventSubtypeName')"/>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:value-of select="fri:find-local-attribute-value(., 'GroupTypeName')"/>
@@ -70,7 +70,7 @@
                                     <xsl:choose>
                                         <xsl:when test="$documentCode = 'IPRA'">
                                             <xsl:choose>
-                                                <xsl:when test="$isIpra20221024">
+                                                <xsl:when test="$isIpra20221024 = 'true'">
                                                     Нуждается
                                                 </xsl:when>
                                                 <xsl:otherwise>
@@ -98,7 +98,13 @@
                                     <xsl:variable name="toDescr">
                                         <xsl:value-of select="fri:find-local-attribute-value(., 'ToDescr')"/>
                                     </xsl:variable>
+                                    <xsl:variable name="indefinitely">
+                                        <xsl:value-of select="fri:find-local-attribute-value(., 'Indefinitely')"/>
+                                    </xsl:variable>
                                     <xsl:choose>
+                                        <xsl:when test="$indefinitely = 'true'">
+                                            <xsl:text>Бессрочно</xsl:text>
+                                        </xsl:when>
                                         <xsl:when test="$to != ''">
                                             <xsl:value-of select="concat(fri:format-date($from), ' - ', fri:format-date($to))"/>
                                         </xsl:when>
@@ -110,7 +116,7 @@
                             </fo:table-cell>
                             <fo:table-cell padding="2px" border="solid black 1px" text-align="left">
                                 <fo:block>
-                                    <xsl:value-of select="fri:find-local-attribute-value(., 'Executor')"/>
+                                    <xsl:value-of select="fri:find-twin-value(., 'Executor', 'ExecutorName')"/>
                                 </fo:block>
                             </fo:table-cell>
                         </fo:table-row>
